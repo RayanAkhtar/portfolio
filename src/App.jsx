@@ -1,26 +1,26 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { GiEagleHead } from 'react-icons/gi'  // Import the eagle icon from react-icons/gi
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isClicked, setIsClicked] = useState(false);  // State to track button click
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+        <button onClick={() => setIsClicked(!isClicked)}>
+          Hawk
         </button>
+        
+        {/* Conditionally render the text and icon when the button is clicked */}
+        {isClicked && (
+          <div>
+            <p>Tuah</p>
+            <GiEagleHead size={30} /> {/* Render eagle icon */}
+          </div>
+        )}
+        
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
