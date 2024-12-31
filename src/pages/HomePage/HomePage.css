@@ -1,0 +1,18 @@
+.home-page {
+    padding: 30px;
+    background-color: inherit;
+  }
+  
+  .home-page section {
+    margin-bottom: 30px;
+  }
+  
+  .home-page h1, .home-page h2 {
+    color: inherit;
+  }
+  
+  .home-page p {
+    color: inherit;
+    font-size: 1.2rem;
+  }
+  
