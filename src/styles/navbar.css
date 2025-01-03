@@ -1,0 +1,106 @@
+/* Navbar Styles */
+nav {
+    position: relative;
+    width: 100%;
+  }
+  
+  /* Container for Navbar Items */
+  .navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #222;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 60px; /* Adjust based on your preferred navbar height */
+  }
+  
+  /* Menu Toggle Button */
+  .menu-toggle {
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+  }
+  
+  /* Logo Styling */
+  .logo-link {
+    text-decoration: none;
+  }
+  
+  .logo {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  /* Navbar Content */
+  .navbar-content {
+    color: white;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  /* Aside Menu Styles */
+  .aside-menu {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Hidden by default */
+    width: 250px;
+    height: 100vh;
+    background: #333;
+    color: white;
+    overflow-y: auto;
+    transition: left 0.3s ease;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .aside-menu.open {
+    left: 0; /* Show when open */
+  }
+  
+  .aside-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .aside-menu li {
+    margin-bottom: 10px;
+  }
+  
+  .menu-link {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    display: block;
+  }
+  
+  .sub-items {
+    padding-left: 20px;
+  }
+  
+  .sub-item-link {
+    text-decoration: none;
+    color: #ddd;
+    font-size: 16px;
+  }
+  
+  .close-btn {
+    background: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
