@@ -1,106 +1,171 @@
-/* Navbar Styles */
 nav {
-    position: relative;
-    width: 100%;
-  }
-  
-  /* Container for Navbar Items */
-  .navbar-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: #222;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    height: 60px; /* Adjust based on your preferred navbar height */
-  }
-  
-  /* Menu Toggle Button */
-  .menu-toggle {
-    background-color: transparent;
-    color: white;
-    border: none;
-    font-size: 30px;
-    cursor: pointer;
-  }
-  
-  /* Logo Styling */
-  .logo-link {
-    text-decoration: none;
-  }
-  
-  .logo {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  
-  /* Navbar Content */
-  .navbar-content {
-    color: white;
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  /* Aside Menu Styles */
-  .aside-menu {
-    position: fixed;
-    top: 0;
-    left: -250px; /* Hidden by default */
-    width: 250px;
-    height: 100vh;
-    background: #333;
-    color: white;
-    overflow-y: auto;
-    transition: left 0.3s ease;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
-  .aside-menu.open {
-    left: 0; /* Show when open */
-  }
-  
-  .aside-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .aside-menu li {
-    margin-bottom: 10px;
-  }
-  
-  .menu-link {
-    text-decoration: none;
-    color: #fff;
-    font-size: 18px;
-    display: block;
-  }
-  
-  .sub-items {
-    padding-left: 20px;
-  }
-  
-  .sub-item-link {
-    text-decoration: none;
-    color: #ddd;
-    font-size: 16px;
-  }
-  
-  .close-btn {
-    background: red;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    margin-bottom: 20px;
-  }
-  
+  position: relative;
+  width: 100%;
+}
+
+/* Container for Navbar Items */
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #222;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 99%;  /* 100% will leave the right-most element off the page */
+  z-index: 1000;
+  height: 60px;
+}
+
+/* ☰ Menu Toggle Button */
+.menu-toggle {
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+/* Logo Styling (todo later) */
+.logo-link {
+  text-decoration: none;
+}
+
+.logo {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Navbar Content */
+.navbar-content {
+  color: white;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Aside Menu Styles */
+.aside-menu {
+  position: fixed;
+  top: 0;
+  left: -250px; /* Hidden by default */
+  width: 250px;
+  height: 100vh;
+  background: #333;
+  color: white;
+  overflow-y: auto;
+  transition: left 0.3s ease;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.aside-menu.open {
+  left: 0; /* Show when open */
+}
+
+.aside-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.aside-menu li {
+  margin-bottom: 10px;
+}
+
+.menu-link {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  display: block;
+}
+
+.sub-items {
+  padding-left: 20px;
+}
+
+.sub-item-link {
+  text-decoration: none;
+  color: #ddd;
+  font-size: 16px;
+}
+
+.close-btn {
+  background: red;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+/* Dropdown Icon and Menu Styling */
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.dropdown-icon {
+  font-size: 24px;
+  color: white;
+  padding: 5px 10px;
+  border: 1px solid white;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-icon:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background: #444;
+  border: 1px solid #555;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: none;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dropdown-container:hover .dropdown-menu {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Dropdown Menu List (the </> part of the website) */
+.dropdown-menu ul {
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+}
+
+.dropdown-menu li {
+  display: block; /* Vertical stacking for dropdown menu */
+  margin-bottom: 5px;
+}
+
+.dropdown-link {
+  padding: 5px 10px;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  display: block;
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-link:hover {
+  background-color: #555;
+}
