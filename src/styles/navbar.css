@@ -127,25 +127,27 @@ nav {
 .dropdown-menu {
   position: absolute;
   top: 40px;
+  margin-top: 8px;
   right: 0;
   background: #444;
   border: 1px solid #555;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  display: none;
-  z-index: 1000;
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0; /* Hidden by default */
+  transform: translateY(-10px); /* Initially positioned above */
+  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  pointer-events: none; /* Prevents interactions when not visible */
 }
 
+/* Make the dropdown visible on hover */
 .dropdown-container:hover .dropdown-menu {
-  display: block;
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0); /* Dropdown comes down */
+  pointer-events: auto; /* Enable interactions */
 }
 
-/* Dropdown Menu List (the </> part of the website) */
+
+/* Dropdown Menu List */
 .dropdown-menu ul {
   list-style: none;
   padding: 10px;
@@ -153,7 +155,7 @@ nav {
 }
 
 .dropdown-menu li {
-  display: block; /* Vertical stacking for dropdown menu */
+  display: block; /* Ensures vertical stacking of menu items */
   margin-bottom: 5px;
 }
 

@@ -24,7 +24,7 @@ const menuItems: MenuItem[] = [
     ],
   },
   { label: "Extracurricular", path: "/extracurricular" },
-  { label: "Interests & hobbies", path: "/interestsAndHobbies" },
+  { label: "Interests & hobbies", path: "/interests" },
   { label: "Contact", path: "/contact" },
 ];
 
@@ -53,7 +53,6 @@ const AsideMenu: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
 
   return (
     <aside className={`aside-menu ${isOpen ? "open" : ""}`}>
-      <button className="close-btn">Close</button>
       <ul>
         {menuItems.map((item) => (
           <li key={item.path}>
