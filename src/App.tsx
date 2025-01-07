@@ -1,10 +1,10 @@
-import './App.css'
+import './App.css';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import Footer from './components/Footer'
-import Navbar from './components/Navbar'
+import Footer from './components/Footer';
+import Navbar from './components/Navbar';
 
-import Home from './pages/Home'
+import Home from './pages/Home';
 import About from "./pages/About";
 import Spotlight from "./pages/Spotlight";
 import Projects from "./pages/Projects";
@@ -17,31 +17,31 @@ import Frameworks from "./pages/Frameworks";
 import Tools from "./pages/Tools";
 
 function App() {
-
-
   return (
-    <>
+    <div className="app-container">
       <Router>
         <Navbar />
-
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />}/>
-          <Route path="/spotlight" element={<Spotlight />}/>
-          <Route path="/projects" element={<Projects />}/>
-          <Route path="/extracurricular" element={<Extracurricular />}/>
-          <Route path="/interests" element={<Interests />}/>
-          <Route path="/contact" element={<Contacts />}/>
-          <Route path="/languages" element={<Languages />}/>
-          <Route path="/technologies" element={<Technologies />}/>
-          <Route path="/frameworks" element={<Frameworks />}/>
-          <Route path="/tools" element={<Tools />}/>
-        </Routes>
         
+        <div className="main-content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/spotlight" element={<Spotlight />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/extracurricular" element={<Extracurricular />} />
+            <Route path="/interests" element={<Interests />} />
+            <Route path="/contact" element={<Contacts />} />
+            <Route path="/languages" element={<Languages />} />
+            <Route path="/technologies" element={<Technologies />} />
+            <Route path="/frameworks" element={<Frameworks />} />
+            <Route path="/tools" element={<Tools />} />
+          </Routes>
+        </div>
+
         <Footer />
       </Router>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;

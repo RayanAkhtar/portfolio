@@ -28,7 +28,10 @@ const menuItems: MenuItem[] = [
   { label: "Contact", path: "/contact" },
 ];
 
-const AsideMenu: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
+const AsideMenu: React.FC<{ isOpen: boolean; closeMenu: () => void }> = ({
+  isOpen,
+  closeMenu,
+}) => {
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({});
   const navigate = useNavigate();
 
@@ -44,11 +47,13 @@ const AsideMenu: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
       toggleSubMenu(item.label);
     } else {
       navigate(item.path);
+      closeMenu();
     }
   };
 
   const handleMenuDoubleClick = (item: MenuItem) => {
     navigate(item.path);
+    closeMenu();
   };
 
   return (
@@ -76,7 +81,11 @@ const AsideMenu: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
               >
                 {item.subItems.map((subItem) => (
                   <li key={subItem.path}>
-                    <Link to={subItem.path} className="sub-item-link">
+                    <Link
+                      to={subItem.path}
+                      className="sub-item-link"
+                      onClick={closeMenu}
+                    >
                       {subItem.label}
                     </Link>
                   </li>

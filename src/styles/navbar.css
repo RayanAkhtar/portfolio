@@ -27,11 +27,6 @@ nav {
   cursor: pointer;
 }
 
-/* Logo Styling (todo later) */
-.logo-link {
-  text-decoration: none;
-}
-
 .logo {
   height: 50px;
   width: 50px;
@@ -94,16 +89,7 @@ nav {
   font-size: 16px;
 }
 
-.close-btn {
-  background: red;
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  margin-bottom: 20px;
-}
-
-/* Dropdown Icon and Menu Styling */
+/* Dropdown Icon </> */
 .dropdown-container {
   position: relative;
   display: inline-block;
@@ -113,6 +99,7 @@ nav {
 .dropdown-icon {
   font-size: 24px;
   color: white;
+  margin-right: 20px;
   padding: 5px 10px;
   border: 1px solid white;
   border-radius: 5px;
@@ -133,17 +120,17 @@ nav {
   border: 1px solid #555;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  opacity: 0; /* Hidden by default */
-  transform: translateY(-10px); /* Initially positioned above */
+  opacity: 0; /* Hidden initially, hover to see */
+  transform: translateY(-10px); /* Animate coming in from above */
   transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  pointer-events: none; /* Prevents interactions when not visible */
+  pointer-events: none; /* Dont interact when not visible */
 }
 
 /* Make the dropdown visible on hover */
 .dropdown-container:hover .dropdown-menu {
   opacity: 1;
   transform: translateY(0); /* Dropdown comes down */
-  pointer-events: auto; /* Enable interactions */
+  pointer-events: auto; /* Interact when visible */
 }
 
 
