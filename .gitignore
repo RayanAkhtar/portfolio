@@ -24,6 +24,7 @@ dist-ssr
 *.sw?
 
 # Critical data
+backend/mongodb/.env
 .env
 projects.json
 properties.json

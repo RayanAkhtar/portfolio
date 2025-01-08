@@ -1,11 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/asideMenu.css";
+import { getSpotlightProjects, getCurrentlyWorkingOnProjects, getProjects, getOtherProjects} from "../../api/projects";
 
 interface MenuItem {
   label: string;
   path: string;
   subItems?: MenuItem[];
+}
+
+interface Project {
+  name: string;
+  description: string;
+  spotlight: boolean;
+  startDate: string;
+  endDate: string;
+  currentlyWorkingOn: boolean;
+  thumbnailImage: string;
+  propertyNames: string[];
 }
 
 const menuItems: MenuItem[] = [
@@ -32,8 +44,38 @@ const AsideMenu: React.FC<{ isOpen: boolean; closeMenu: () => void }> = ({
   isOpen,
   closeMenu,
 }) => {
+
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({});
+  const [spotlightProjects, setSpotlightProjects] = useState<Project[]>();
+  const [currentProjects, setCurrentProjects] = useState<Project[]>();
+  const [otherProjects, setOtherProjects] = useState<Project[]>();
+  const [loading, setLoading] = useState(true);
+
   const navigate = useNavigate();
+  
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+
+        const spotlightData = await getSpotlightProjects();
+        setSpotlightProjects(spotlightData);
+        console.log("Spotlight projects", spotlightData)
+        const currentData = await getCurrentlyWorkingOnProjects();
+        setCurrentProjects(currentData);
+
+        const otherData = await getOtherProjects();
+        setOtherProjects(otherData);
+
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const toggleSubMenu = (label: string) => {
     setExpandedItems((prev) => ({
