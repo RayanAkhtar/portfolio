@@ -25,3 +25,5 @@ dist-ssr
 
 # Critical data
 .env
+projects.json
+properties.json
