@@ -1,68 +1,155 @@
+/* Global styles and font settings */
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+  /* Fallback colors, DO NOT DELETE */
+
+  --bg-color: #242424; /* Dark background for the body */
+  --text-color: #ffffff; /* Bright white text for readability */
+
+  /* Blueish Backgrounds */
+  --navbar-bg-color: #263238; /* Deep blueish background for navbar */
+  --aside-bg-color: #37474f; /* Darker blueish background for aside menu */
+  --footer-bg-color: #1a2634; /* Muted blue for footer background */
+  --menu-item-color: #5c899e; /* Muted cyan blue for menu items */
+  --dropdown-menu-color: #37525e;
+  --dropdown-menu-border-color: #555;
+  --menu-border-color: #555;
+  --dropdown-toggle-color: #39474e;
+
+  /* Hover Effects and Accents */
+  --dropdown-hover-color: rgba(255, 255, 255, 0.2); /* Subtle white hover for dropdown */
+  --menu-hover-color: rgba(255, 255, 255, 0.2); /* Muted blue hover effect for buttons */
+  --menu-item-hover-color: #4a90e2; /* Bright blue tint for menu items on hover */
+  --sub-item-hover: #5c899e;
+
+  
+  transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* Dark mode colors */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #242424;
+    --text-color: #ffffff;
+    --navbar-bg-color: #263238;
+    --aside-bg-color: #37474f;
+    --footer-bg-color: #1a2634;
+    --dropdown-hover-color: rgba(255, 255, 255, 0.2);
+  }
 }
 
+
+/* Light Mode */
+.theme-light {
+  --bg-color: #d8eff3; 
+  --text-color: #333333; 
+
+  /* Unified Backgrounds */
+  --navbar-bg-color: #8db1b6; 
+  --aside-bg-color: #779599;
+  --footer-bg-color: #7494a3;
+  --menu-item-color: rgba(0, 0, 0, 0.164);
+  --dropdown-menu-color: #7b9dad;
+  --dropdown-menu-border-color: #4e6874;
+  --menu-border-color: #88aec0;
+  --dropdown-toggle-color: #94bacc;
+
+  /* Hover Effects and Accents */
+  --dropdown-hover-color: rgba(0, 0, 0, 0.1);
+  --menu-hover-color: #bde8fc;
+  --menu-item-hover-color: #a2d4eb;
+  --sub-item-hover: rgba(17, 54, 71, 0.253);
+}
+
+/* Dark Mode */
+.theme-dark {
+  --bg-color: #242424; /* Dark background for the body */
+  --text-color: #ffffff; /* Bright white text for readability */
+
+  /* Blueish Backgrounds */
+  --navbar-bg-color: #263238; /* Deep blueish background for navbar */
+  --aside-bg-color: #37474f; /* Darker blueish background for aside menu */
+  --footer-bg-color: #1a2634; /* Muted blue for footer background */
+  --menu-item-color: #5c899e; /* Muted cyan blue for menu items */
+  --dropdown-menu-color: #37525e;
+  --dropdown-menu-border-color: #555;
+  --menu-border-color: #496d7e;
+  --dropdown-toggle-color: #39474e;
+
+  /* Hover Effects and Accents */
+  --dropdown-hover-color: rgba(255, 255, 255, 0.2); /* Subtle white hover for dropdown */
+  --menu-hover-color: rgba(255, 255, 255, 0.2); /* Muted blue hover effect for buttons */
+  --menu-item-hover-color: #4a90e2; /* Bright blue tint for menu items on hover */
+  --sub-item-hover: #5c899e;
+
+}
+
+
+/* Body styling */
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  margin-top: 80px;
   min-width: 320px;
   min-height: 100vh;
+
+  background-color: var(--bg-color);
+  color: var(--text-color);
+
+  transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Apply background-color and text-color for navbar */
+.navbar-container {
+  background-color: var(--navbar-bg-color);
+  color: var(--navbar-text-color);
+  transition: background-color 0.6s ease, color 0.6s ease;
 }
 
+/* Apply background-color for aside menu */
+.aside-menu {
+  background-color: var(--aside-bg-color);
+  color: var(--aside-text-color);
+  transition: background-color 0.6s ease, color 0.6s ease;
+}
+
+/* Apply footer background */
+.footer {
+  background-color: var(--footer-bg-color);
+  color: var(--footer-text-color);
+  transition: background-color 0.6s ease, color 0.6s ease;
+}
+
+/* Apply dropdown hover color */
+.dropdown-icon:hover {
+  background-color: var(--dropdown-hover-color);
+  transition: background-color 0.3s ease;
+}
+
+/* Button Styles */
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+  border: 2px solid var(--menu-border-color);
+  border-radius: 5px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+button:hover {
+  background-color: var(--menu-hover-color);
+}
+
+/* Links and Text with Blue Accent */
+a {
+  color: var(--blue-accent);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--blue-hover);
 }

@@ -1,0 +1,170 @@
+nav {
+  position: relative;
+  width: 100%;
+}
+
+/* Container for Navbar Items */
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: var(--navbar-bg-color);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 99%;  /* 100% will leave the right-most element off the page */
+  z-index: 1000;
+  height: 60px;
+}
+
+/* ☰ Menu Toggle Button */
+.menu-toggle {
+  color: var(--text-color);
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.logo {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Default Styles for Dark Mode */
+.image-link {
+  height: 50px;
+  margin-top: 15px;
+  filter: brightness(0) invert(1);
+  transition: filter 0.3s ease;
+}
+
+.image-link:hover {
+  filter: brightness(1) invert(0.5);
+}
+
+
+/* Navbar Content */
+.navbar-content {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Aside Menu Styles */
+.aside-menu {
+  position: fixed;
+  top: 0;
+  left: -250px; /* Hidden by default */
+  width: 250px;
+  height: 100vh;
+  background: var(--aside-bg-color);
+  overflow-y: auto;
+  transition: left 0.3s ease;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.aside-menu.open {
+  left: 0; /* Show when open */
+}
+
+.aside-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.aside-menu li {
+  margin-bottom: 10px;
+}
+
+.menu-link {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 18px;
+  display: block;
+}
+
+.sub-items {
+  padding-left: 20px;
+}
+
+.sub-item-link {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 16px;
+}
+
+/* Dropdown Icon </> */
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.dropdown-icon {
+  font-size: 24px;
+  color: var(--text-color);
+  margin-right: 20px;
+  padding: 5px 10px;
+  border: 1px solid;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-icon:hover {
+  background-color: var(--dropdown-hover-color);
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  position: absolute;
+  top: 40px;
+  margin-top: 8px;
+  right: 0;
+  background: var(--dropdown-menu-color);
+  border: 2px solid var(--dropdown-menu-border-color);
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  opacity: 0; /* Hidden initially, hover to see */
+  transform: translateY(-10px); /* Animate coming in from above */
+  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  pointer-events: none; /* Dont interact when not visible */
+}
+
+/* Make the dropdown visible on hover */
+.dropdown-container:hover .dropdown-menu {
+  opacity: 1;
+  transform: translateY(0); /* Dropdown comes down */
+  pointer-events: auto; /* Interact when visible */
+}
+
+
+/* Dropdown Menu List */
+.dropdown-menu ul {
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+}
+
+.dropdown-menu li {
+  display: block; /* Ensures vertical stacking of menu items */
+  margin-bottom: 5px;
+}
+
+.dropdown-link {
+  padding: 5px 10px;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  display: block;
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-link:hover {
+  background-color: var(--menu-border-color);
+}

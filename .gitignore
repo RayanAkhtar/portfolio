@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Critical data
+backend/mongodb/.env
+.env
+projects.json
+properties.json
