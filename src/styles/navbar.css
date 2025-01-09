@@ -17,6 +17,7 @@ nav {
   width: 99%;  /* 100% will leave the right-most element off the page */
   z-index: 1000;
   height: 60px;
+  border-bottom: 2px solid var(--navbar-border-color);
 }
 
 /* ☰ Menu Toggle Button */
