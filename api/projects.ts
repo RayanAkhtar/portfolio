@@ -1,12 +1,20 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, query, where, getDocs} from "firebase/firestore";
-import * as firebaseConfig from "./firebaseConfig.json"
 
-// Initialize Firebase
+const firebaseConfig = {
+  "apiKey": "AIzaSyCivUgf1CwjNjJX7PGZkL607Zpcde9gsgo",
+  "authDomain": "portfolio-2e98e.firebaseapp.com",
+  "projectId": "portfolio-2e98e",
+  "storageBucket": "portfolio-2e98e.firebasestorage.app",
+  "messagingSenderId": "311757536682",
+  "appId": "1:311757536682:web:469b801078f92fa4087fd3",
+  "measurementId": "G-C6CB1F03Y1"
+}
+
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Interface for Project (Optional, for TypeScript)
+
 interface IProject {
   name: string;
   description: string;
@@ -18,7 +26,7 @@ interface IProject {
   propertyNames: string[];
 }
 
-// Function to fetch spotlight projects
+// fetches spotlight projects
 const getSpotlightProjects = async (): Promise<IProject[]> => {
   try {
     const q = query(collection(db, "projects"), where("spotlight", "==", true));
@@ -34,7 +42,7 @@ const getSpotlightProjects = async (): Promise<IProject[]> => {
   }
 };
 
-// Function to fetch projects currently being worked on
+// fetches projects currently being worked on
 const getCurrentlyWorkingOnProjects = async (): Promise<IProject[]> => {
   try {
     const q = query(collection(db, "projects"), where("currentlyWorkingOn", "==", true));
@@ -50,7 +58,7 @@ const getCurrentlyWorkingOnProjects = async (): Promise<IProject[]> => {
   }
 };
 
-// Function to fetch projects that are neither spotlight nor being worked on
+// fetches projects that are neither spotlight nor being worked on
 const getOtherProjects = async (): Promise<IProject[]> => {
   try {
     const q = query(
@@ -70,7 +78,7 @@ const getOtherProjects = async (): Promise<IProject[]> => {
   }
 };
 
-// Function to fetch all projects
+// fetches all projects
 const getProjects = async (): Promise<IProject[]> => {
   try {
     const querySnapshot = await getDocs(collection(db, "projects"));
