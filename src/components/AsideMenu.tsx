@@ -106,6 +106,11 @@ const AsideMenu: React.FC<{ isOpen: boolean; closeMenu: () => void }> = ({
     }
   };
 
+  const handleMenuDoubleClick = (item: MenuItem) => {
+    navigate(item.path);
+    closeMenu();
+  };
+
   if (loading) {
     return <div>Loading menu...</div>;
   }
@@ -118,6 +123,7 @@ const AsideMenu: React.FC<{ isOpen: boolean; closeMenu: () => void }> = ({
             <div
               className="menu-item"
               onClick={() => handleMenuClick(item)}
+              onDoubleClick={() => handleMenuDoubleClick(item)}
               role="menuitem"
             >
               <span className="menu-link">{item.label}</span>
