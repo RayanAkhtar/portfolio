@@ -1,9 +1,9 @@
 /* Footer Styling */
 .footer {
-  z-index: 1;
+
 	bottom: 0;
-  background-color: #1a1a1a;
-  color: #fff;
+  background-color: var(--footer-bg-color);
+  color: var(--text-color);
   text-align: center;
   padding: 15px 0;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);

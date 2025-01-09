@@ -1,14 +1,7 @@
 button {
-  background: blue;
-  color: white;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
-}
-
-button.close {
-  background: red;
-  margin-bottom: 20px;
 }
 
 .app-container {
@@ -22,5 +15,6 @@ button.close {
 .main-content {
   flex: 1;
   width: 100%;
+  margin-top: 90px;
 }
 

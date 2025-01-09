@@ -25,6 +25,7 @@ const AsideMenu: React.FC<{ isOpen: boolean; closeMenu: () => void }> = ({
     { label: "Contact", path: "/contact" },
   ]);
   const [loading, setLoading] = useState(true);
+  const [theme, setTheme] = useState<string>('dark');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -111,12 +112,30 @@ const AsideMenu: React.FC<{ isOpen: boolean; closeMenu: () => void }> = ({
     closeMenu();
   };
 
+  // Switch theme function
+  const toggleTheme = () => {
+    setTheme((prevTheme) => {
+      const newTheme = prevTheme === 'light' ? 'dark' : 'light';
+      document.documentElement.classList.remove(`theme-${prevTheme}`);
+      document.documentElement.classList.add(`theme-${newTheme}`);
+      return newTheme;
+    });
+  };
+
   if (loading) {
     return <div>Loading menu...</div>;
   }
 
   return (
     <aside className={`aside-menu ${isOpen ? "open" : ""}`}>
+
+      <div className="day-toggle">
+        <label className="switch">
+            <input type="checkbox" onClick={toggleTheme} checked={theme != "light"}/>
+            <span className="slider"></span>
+        </label>
+      </div>
+
       <ul>
         {menuItems.map((item) => (
           <li key={item.path}>

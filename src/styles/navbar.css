@@ -9,7 +9,8 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  background-color: #222;
+  background-color: var(--navbar-bg-color);
+  transition: background-color 0.4s ease, color 0.4s ease;
   position: fixed;
   top: 0;
   left: 0;
@@ -20,9 +21,7 @@ nav {
 
 /* ☰ Menu Toggle Button */
 .menu-toggle {
-  background-color: transparent;
-  color: white;
-  border: none;
+  color: var(--text-color);
   font-size: 30px;
   cursor: pointer;
 }
@@ -34,7 +33,7 @@ nav {
   object-fit: cover;
 }
 
-/* The logo >_ in the navbar */
+/* Default Styles for Dark Mode */
 .image-link {
   height: 50px;
   margin-top: 15px;
@@ -43,12 +42,12 @@ nav {
 }
 
 .image-link:hover {
-  filter: brightness(1) invert(0.5); 
+  filter: brightness(1) invert(0.5);
 }
+
 
 /* Navbar Content */
 .navbar-content {
-  color: white;
   font-size: 18px;
   display: flex;
   align-items: center;
@@ -62,8 +61,7 @@ nav {
   left: -250px; /* Hidden by default */
   width: 250px;
   height: 100vh;
-  background: #333;
-  color: white;
+  background: var(--aside-bg-color);
   overflow-y: auto;
   transition: left 0.3s ease;
   padding: 20px;
@@ -86,7 +84,7 @@ nav {
 
 .menu-link {
   text-decoration: none;
-  color: #fff;
+  color: var(--text-color);
   font-size: 18px;
   display: block;
 }
@@ -97,7 +95,7 @@ nav {
 
 .sub-item-link {
   text-decoration: none;
-  color: #ddd;
+  color: var(--text-color);
   font-size: 16px;
 }
 
@@ -110,16 +108,16 @@ nav {
 
 .dropdown-icon {
   font-size: 24px;
-  color: white;
+  color: var(--text-color);
   margin-right: 20px;
   padding: 5px 10px;
-  border: 1px solid white;
+  border: 1px solid;
   border-radius: 5px;
   transition: background-color 0.2s ease;
 }
 
 .dropdown-icon:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: var(--dropdown-hover-color);
 }
 
 /* Dropdown Menu */
@@ -128,8 +126,8 @@ nav {
   top: 40px;
   margin-top: 8px;
   right: 0;
-  background: #444;
-  border: 1px solid #555;
+  background: var(--dropdown-menu-color);
+  border: 2px solid var(--dropdown-menu-border-color);
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   opacity: 0; /* Hidden initially, hover to see */
@@ -168,5 +166,5 @@ nav {
 }
 
 .dropdown-link:hover {
-  background-color: #555;
+  background-color: var(--menu-border-color);
 }
