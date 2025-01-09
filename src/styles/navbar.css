@@ -34,6 +34,18 @@ nav {
   object-fit: cover;
 }
 
+/* The logo >_ in the navbar */
+.image-link {
+  height: 50px;
+  margin-top: 15px;
+  filter: brightness(0) invert(1);
+  transition: filter 0.3s ease;
+}
+
+.image-link:hover {
+  filter: brightness(1) invert(0.5); 
+}
+
 /* Navbar Content */
 .navbar-content {
   color: white;
