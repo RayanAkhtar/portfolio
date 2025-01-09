@@ -28,6 +28,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/spotlight" element={<Spotlight />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:projectName" element={<Projects />} />
             <Route path="/extracurricular" element={<Extracurricular />} />
             <Route path="/interests" element={<Interests />} />
             <Route path="/contact" element={<Contacts />} />

@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/asideMenu.css";
-import { getSpotlightProjects, getCurrentlyWorkingOnProjects, getProjects, getOtherProjects} from "../../api/projects";
+import {
+  getSpotlightProjects,
+  getCurrentlyWorkingOnProjects,
+  getOtherProjects,
+} from "../../api/projects";
 
 interface MenuItem {
   label: string;
@@ -9,66 +13,75 @@ interface MenuItem {
   subItems?: MenuItem[];
 }
 
-interface Project {
-  name: string;
-  description: string;
-  spotlight: boolean;
-  startDate: string;
-  endDate: string;
-  currentlyWorkingOn: boolean;
-  thumbnailImage: string;
-  propertyNames: string[];
-}
-
-const menuItems: MenuItem[] = [
-  { label: "About Me", path: "/about" },
-  {
-    label: "Spotlight",
-    path: "/spotlight",
-    subItems: [{ label: "Projects 1", path: "/projects/1" }],
-  },
-  {
-    label: "Projects",
-    path: "/projects",
-    subItems: [
-      { label: "Project 1", path: "/projects/1" },
-      { label: "Project 2", path: "/projects/2" },
-    ],
-  },
-  { label: "Extracurricular", path: "/extracurricular" },
-  { label: "Interests & hobbies", path: "/interests" },
-  { label: "Contact", path: "/contact" },
-];
-
 const AsideMenu: React.FC<{ isOpen: boolean; closeMenu: () => void }> = ({
   isOpen,
   closeMenu,
 }) => {
-
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({});
-  const [spotlightProjects, setSpotlightProjects] = useState<Project[]>();
-  const [currentProjects, setCurrentProjects] = useState<Project[]>();
-  const [otherProjects, setOtherProjects] = useState<Project[]>();
+  const [menuItems, setMenuItems] = useState<MenuItem[]>([
+    { label: "About Me", path: "/about" },
+    { label: "Extracurricular", path: "/extracurricular" },
+    { label: "Interests & hobbies", path: "/interests" },
+    { label: "Contact", path: "/contact" },
+  ]);
   const [loading, setLoading] = useState(true);
-
   const navigate = useNavigate();
-  
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        // Fetch data in parallel
+        const [spotlightData, currentData, otherData] = await Promise.all([
+          getSpotlightProjects(),
+          getCurrentlyWorkingOnProjects(),
+          getOtherProjects(),
+        ]);
 
-        const spotlightData = await getSpotlightProjects();
-        setSpotlightProjects(spotlightData);
-        console.log("Spotlight projects", spotlightData)
-        const currentData = await getCurrentlyWorkingOnProjects();
-        setCurrentProjects(currentData);
+        const spotlightMenu: MenuItem = {
+          label: "Spotlight",
+          path: "/spotlight",
+          subItems: spotlightData.map((project) => ({
+            label: project.name,
+            path: `/projects/${project.name}`,
+          })),
+        };
 
-        const otherData = await getOtherProjects();
-        setOtherProjects(otherData);
+        const currentProjectsMenu: MenuItem = {
+          label: "Current Projects",
+          path: "/current",
+          subItems: currentData.map((project) => ({
+            label: project.name,
+            path: `/projects/${project.name}`,
+          })),
+        };
 
+        const otherProjectsMenu: MenuItem = {
+          label: "Other Projects",
+          path: "/other",
+          subItems: otherData.map((project) => ({
+            label: project.name,
+            path: `/projects/${project.name}`,
+          })),
+        };
+
+
+        const newMenuItems = [
+          spotlightMenu,
+          currentProjectsMenu,
+          otherProjectsMenu,
+        ];
+
+        // Removing duplicates based on the label or path
+        setMenuItems((prevMenuItems) => {
+          const aboutPath = prevMenuItems[0];
+          const existingPaths = new Set(prevMenuItems.map((item) => item.path));
+          const filteredItems = newMenuItems.filter(
+            (newItem) => !existingPaths.has(newItem.path)
+          );
+          return [aboutPath, ...filteredItems, ...prevMenuItems.slice(1)];
+        });
       } catch (error) {
-        console.error(error);
+        console.error("Error fetching menu items:", error);
       } finally {
         setLoading(false);
       }
@@ -93,10 +106,9 @@ const AsideMenu: React.FC<{ isOpen: boolean; closeMenu: () => void }> = ({
     }
   };
 
-  const handleMenuDoubleClick = (item: MenuItem) => {
-    navigate(item.path);
-    closeMenu();
-  };
+  if (loading) {
+    return <div>Loading menu...</div>;
+  }
 
   return (
     <aside className={`aside-menu ${isOpen ? "open" : ""}`}>
@@ -106,7 +118,7 @@ const AsideMenu: React.FC<{ isOpen: boolean; closeMenu: () => void }> = ({
             <div
               className="menu-item"
               onClick={() => handleMenuClick(item)}
-              onDoubleClick={() => handleMenuDoubleClick(item)}
+              role="menuitem"
             >
               <span className="menu-link">{item.label}</span>
               {item.subItems && (
