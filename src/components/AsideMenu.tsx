@@ -5,7 +5,7 @@ import {
   getSpotlightProjects,
   getCurrentlyWorkingOnProjects,
   getOtherProjects,
-} from "../../api/projects";
+} from "../../api/firebase";
 
 interface MenuItem {
   label: string;

@@ -16,6 +16,8 @@ import Technologies from "./pages/Technologies";
 import Frameworks from "./pages/Frameworks";
 import Tools from "./pages/Tools";
 import NotFound from './pages/NotFound';
+import Fields from './pages/Fields';
+
 
 function App() {
   return (
@@ -37,6 +39,7 @@ function App() {
             <Route path="/technologies" element={<Technologies />} />
             <Route path="/frameworks" element={<Frameworks />} />
             <Route path="/tools" element={<Tools />} />
+            <Route path="/fields" element={<Fields />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
