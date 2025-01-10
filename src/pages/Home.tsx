@@ -40,7 +40,7 @@ const Home: React.FC = () => {
           </p>
         </div>
         <div className="cta-button">
-          <a href="/contact" className="contact-button">Contact</a>
+          <Link to="/contact" className='contact-button'>Contact</Link>
         </div>
       </div>
 
