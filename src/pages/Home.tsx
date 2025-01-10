@@ -94,7 +94,7 @@ const Home: React.FC = () => {
               <Link key={index} to={`/projects/${project.name}`} className="project-card">
                 <h3>{project.name}</h3>
                 <p>{project.description}</p>
-                <img src={project.thumbnailImage} alt={project.name} className="project-thumbnail" />
+                <img src={project.thumbnailImage} alt={project.name} className="project-thumbnail"/>
               </Link>
             ))
           )}

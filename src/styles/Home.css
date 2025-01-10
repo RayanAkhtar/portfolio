@@ -9,7 +9,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+  overflow: hidden;
 }
+
+
+.project-thumbnail {
+  height: 8vh; 
+  width: auto;
+  max-width: 30vw;
+  border-radius: 10px; 
+  display: block;
+  margin: 0px auto;
+}
+
 
 .name {
   font-size: 3rem;
@@ -53,6 +66,7 @@
   width: 100%;
   max-width: 250px;
   text-align: center;
+  z-index: 1;
 }
 
 .contact-button a {
