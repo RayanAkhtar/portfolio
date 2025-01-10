@@ -5,18 +5,18 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 
 import Home from './pages/Home';
-import About from "./pages/About";
-import Spotlight from "./pages/Spotlight";
-import Projects from "./pages/Projects";
-import Extracurricular from "./pages/Extracurricular";
-import Interests from "./pages/Interests";
+//import About from "./pages/About";
+//import Spotlight from "./pages/Spotlight";
+//import Projects from "./pages/Projects";
+//import Extracurricular from "./pages/Extracurricular";
+//import Interests from "./pages/Interests";
 import Contacts from "./pages/Contacts";
-import Languages from "./pages/Languages";
-import Technologies from "./pages/Technologies";
-import Frameworks from "./pages/Frameworks";
-import Tools from "./pages/Tools";
+//import Languages from "./pages/Languages";
+//import Technologies from "./pages/Technologies";
+//import Frameworks from "./pages/Frameworks";
+//import Tools from "./pages/Tools";
 import NotFound from './pages/NotFound';
-import Fields from './pages/Fields';
+//import Fields from './pages/Fields';
 import Builder from './pages/Builder';
 
 function App() {
