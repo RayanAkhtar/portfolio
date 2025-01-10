@@ -15,6 +15,7 @@ import Languages from "./pages/Languages";
 import Technologies from "./pages/Technologies";
 import Frameworks from "./pages/Frameworks";
 import Tools from "./pages/Tools";
+import NotFound from './pages/NotFound'; // Import the NotFound component
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
             <Route path="/technologies" element={<Technologies />} />
             <Route path="/frameworks" element={<Frameworks />} />
             <Route path="/tools" element={<Tools />} />
+            <Route path="*" element={<NotFound />} /> {/* Catch-all route */}
           </Routes>
         </div>
 
