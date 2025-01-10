@@ -11,6 +11,7 @@
 .footer-container {
   margin: 0 auto;
   padding: 0 15px;
+  padding-right: 7.7vw;
 }
 
 .footer-list {
@@ -46,6 +47,10 @@
 
 /* Responsive Styles */
 @media screen and (max-width: 768px) {
+  .footer {
+    padding-right: 0;
+  }
+
   .footer-list {
     flex-direction: column;
     align-items: center; 
@@ -60,6 +65,10 @@
 }
 
 @media screen and (max-width: 480px) {
+  .footer {
+    padding-right: 0;
+  }
+
   .footer-list li {
     font-size: 16px;
     gap: 15px;

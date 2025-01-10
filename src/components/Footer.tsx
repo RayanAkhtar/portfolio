@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/footer.css";
-import { FaEnvelope, FaPhone, FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaEnvelope, FaLinkedin, FaGithub } from "react-icons/fa";
 
 const Footer: React.FC = () => {
   return (
@@ -10,10 +10,6 @@ const Footer: React.FC = () => {
           <li>
             <FaEnvelope className="footer-icon" />
             <a href="mailto:rayanakhtar1203@gmail.com">rayanakhtar1203@gmail.com</a>
-          </li>
-          <li>
-            <FaPhone className="footer-icon" />
-            <span>+44 7961 576656</span>
           </li>
           <li>
             <FaLinkedin className="footer-icon" />
