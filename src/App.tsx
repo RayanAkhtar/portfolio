@@ -17,7 +17,7 @@ import Frameworks from "./pages/Frameworks";
 import Tools from "./pages/Tools";
 import NotFound from './pages/NotFound';
 import Fields from './pages/Fields';
-
+import Builder from './pages/Builder';
 
 function App() {
   return (
@@ -28,18 +28,18 @@ function App() {
         <div className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/spotlight" element={<Spotlight />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/projects/:projectName" element={<Projects />} />
-            <Route path="/extracurricular" element={<Extracurricular />} />
-            <Route path="/interests" element={<Interests />} />
+            <Route path="/about" element={<Builder />} />
+            <Route path="/spotlight" element={<Builder />} />
+            <Route path="/projects" element={<Builder />} />
+            <Route path="/projects/:projectName" element={<Builder />} />
+            <Route path="/extracurricular" element={<Builder />} />
+            <Route path="/interests" element={<Builder />} />
             <Route path="/contact" element={<Contacts />} />
-            <Route path="/languages" element={<Languages />} />
-            <Route path="/technologies" element={<Technologies />} />
-            <Route path="/frameworks" element={<Frameworks />} />
-            <Route path="/tools" element={<Tools />} />
-            <Route path="/fields" element={<Fields />} />
+            <Route path="/languages" element={<Builder />} />
+            <Route path="/technologies" element={<Builder />} />
+            <Route path="/frameworks" element={<Builder />} />
+            <Route path="/tools" element={<Builder />} />
+            <Route path="/fields" element={<Builder />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
