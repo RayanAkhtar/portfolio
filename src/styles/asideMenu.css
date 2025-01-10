@@ -1,5 +1,6 @@
 /* General Aside Menu Styles */
 .aside-menu {
+  z-index: 1;
   position: fixed;
   top: 0;
   left: -250px;
@@ -28,9 +29,9 @@ ul {
   align-items: center;
   cursor: pointer;
   padding: 10px;
-  background: var(--menu-item-color);
+  background-color: var(--menu-item-color);
   border-radius: 5px;
-  transition: background 0.3s ease;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 .menu-item:hover {

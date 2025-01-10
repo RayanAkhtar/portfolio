@@ -6,28 +6,46 @@
   color-scheme: light dark;
 
 
-  /* Fallback colors, DO NOT DELETE */
 
-  --bg-color: #242424; /* Dark background for the body */
-  --text-color: #ffffff; /* Bright white text for readability */
+
+  /* FALLBACK CODE BEGIN */
+
+  --bg-color: #242424; 
+  --text-color: #ffffff; 
 
   /* Blueish Backgrounds */
-  --navbar-bg-color: #263238; /* Deep blueish background for navbar */
-  --aside-bg-color: #37474f; /* Darker blueish background for aside menu */
-  --footer-bg-color: #1a2634; /* Muted blue for footer background */
-  --menu-item-color: #5c899e; /* Muted cyan blue for menu items */
+  --navbar-bg-color: #263238;
+  --navbar-border-color: #11171a;
+  --aside-bg-color: #37474f;
+  --footer-bg-color: #1a2634;
+  --footer-text-color: #bcddec;
+  --menu-item-color: #5c899e;
   --dropdown-menu-color: #37525e;
   --dropdown-menu-border-color: #555;
-  --menu-border-color: #555;
+  --menu-border-color: #496d7e;
   --dropdown-toggle-color: #39474e;
 
   /* Hover Effects and Accents */
-  --dropdown-hover-color: rgba(255, 255, 255, 0.2); /* Subtle white hover for dropdown */
-  --menu-hover-color: rgba(255, 255, 255, 0.2); /* Muted blue hover effect for buttons */
-  --menu-item-hover-color: #4a90e2; /* Bright blue tint for menu items on hover */
+  --dropdown-hover-color: rgba(255, 255, 255, 0.2);
+  --menu-hover-color: rgba(255, 255, 255, 0.2);
+  --menu-item-hover-color: #4a90e2;
   --sub-item-hover: #5c899e;
 
-  
+  --home-gradient-begin: #263238;
+  --home-gradient-2: #46607e;
+  --home-gradient-3: #4a5b70;
+  --home-gradient-4: #2b435f;
+  --home-gradient-end: var(--footer-bg-color);
+  --email-button-background: #263238;
+
+  --blue-accent: blue;
+  --blue-hover: rgb(121, 121, 180);
+
+
+  /* FALLBACK CODE END */
+
+
+
   transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease;
 }
 
@@ -47,12 +65,14 @@
 /* Light Mode */
 .theme-light {
   --bg-color: #d8eff3; 
-  --text-color: #333333; 
+  --text-color: #110555; 
 
   /* Unified Backgrounds */
   --navbar-bg-color: #8db1b6; 
+  --navbar-border-color: #6f8b8f;
   --aside-bg-color: #779599;
   --footer-bg-color: #7494a3;
+  --footer-text-color: #E8E8E8;
   --menu-item-color: rgba(0, 0, 0, 0.164);
   --dropdown-menu-color: #7b9dad;
   --dropdown-menu-border-color: #4e6874;
@@ -64,29 +84,52 @@
   --menu-hover-color: #bde8fc;
   --menu-item-hover-color: #a2d4eb;
   --sub-item-hover: rgba(17, 54, 71, 0.253);
+
+
+  --home-gradient-begin: #8db1b6;
+  --home-gradient-2: #8db6bb;
+  --home-gradient-3: #bcd5d8;
+  --home-gradient-4: #76989c;
+  --home-gradient-end: #7494a3;
+  --email-button-background: #8db6bb;
+
+  --blue-accent: rgb(255, 255, 255);
+  --blue-hover: rgb(121, 121, 180);
 }
 
 /* Dark Mode */
 .theme-dark {
-  --bg-color: #242424; /* Dark background for the body */
-  --text-color: #ffffff; /* Bright white text for readability */
+  --bg-color: #242424;
+  --text-color: #ffffff; 
 
   /* Blueish Backgrounds */
-  --navbar-bg-color: #263238; /* Deep blueish background for navbar */
-  --aside-bg-color: #37474f; /* Darker blueish background for aside menu */
-  --footer-bg-color: #1a2634; /* Muted blue for footer background */
-  --menu-item-color: #5c899e; /* Muted cyan blue for menu items */
+  --navbar-bg-color: #263238;
+  --navbar-border-color: #11171a;
+  --aside-bg-color: #37474f;
+  --footer-bg-color: #1a2634;
+  --footer-text-color: #bcddec;
+  --menu-item-color: #5c899e;
   --dropdown-menu-color: #37525e;
   --dropdown-menu-border-color: #555;
   --menu-border-color: #496d7e;
   --dropdown-toggle-color: #39474e;
 
   /* Hover Effects and Accents */
-  --dropdown-hover-color: rgba(255, 255, 255, 0.2); /* Subtle white hover for dropdown */
-  --menu-hover-color: rgba(255, 255, 255, 0.2); /* Muted blue hover effect for buttons */
-  --menu-item-hover-color: #4a90e2; /* Bright blue tint for menu items on hover */
+  --dropdown-hover-color: rgba(255, 255, 255, 0.2);
+  --menu-hover-color: rgba(255, 255, 255, 0.2);
+  --menu-item-hover-color: #4a90e2;
   --sub-item-hover: #5c899e;
 
+  --home-gradient-begin: #263238;
+  --home-gradient-2: #46607e;
+  --home-gradient-3: #4a5b70;
+  --home-gradient-4: #2b435f;
+  --home-gradient-end: var(--footer-bg-color);
+  --email-button-background: #263238;
+
+  --blue-accent: blue;
+  --blue-hover: rgb(121, 121, 180);
+  
 }
 
 

@@ -6,7 +6,7 @@
   color: var(--text-color);
   text-align: center;
   padding: 15px 0;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+
   font-size: 14px;
 }
 
@@ -31,12 +31,12 @@
 }
 
 .footer-icon {
-  color: #4caf50; 
+  color: var(--footer-text-color); 
   font-size: 18px;
 }
 
 .footer-list a {
-  color: #4caf50;
+  color: var(--footer-text-color);
   text-decoration: none;
 }
 
