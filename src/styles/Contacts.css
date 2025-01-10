@@ -1,0 +1,151 @@
+.contacts-container {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(
+        180deg, 
+        var(--home-gradient-begin), 
+        var(--home-gradient-2),
+        var(--home-gradient-end)
+    );
+    color: var(--text-color);
+    animation: fadeIn 1.5s ease-out;
+}
+
+.contact-hero-section {
+    padding: 100px 20px;
+
+    color: var(--text-color);
+    animation: slideDown 1.5s ease-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease, color 0.4s ease;
+    margin-bottom: 50px;
+}
+
+.contact-title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeInUp 2s ease forwards;
+}
+
+.contact-description {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeInUp 2s ease forwards 0.5s;
+}
+
+.contact-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+    opacity: 0;
+    animation: fadeInUp 2s ease forwards 1s;
+}
+
+.contact-card {
+    background-color: var(--footer-bg-color);
+    padding: 40px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    opacity: 0;
+    animation: fadeInUp 2s ease forwards 1.5s;
+}
+
+.contact-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.contact-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.contact-icon {
+    font-size: 3rem;
+    color: var(--blue-accent);
+    animation: popIn 1.2s ease;
+}
+
+.contact-button {
+    display: inline-block;
+    background-color: var(--footer-bg-color);
+    color: var(--text-color);
+    border-radius: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: transform 0.3s ease, color 0.4s ease;
+    text-decoration: none;
+}
+
+.contact-button:hover {
+    transform: translateY(-5px);
+    color: var(--blue-accent);
+}
+
+.empty-section {
+    flex-grow: 1; /* Fills the remaining space if needed */
+    min-height: 30vh;
+
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .contact-card {
+        padding: 30px 15px;
+    }
+
+    .contact-icon {
+        font-size: 2.5rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

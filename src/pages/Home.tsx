@@ -58,10 +58,12 @@ const Home: React.FC = () => {
 			<section id="contact" className="contact-section">
 				<h2 className="section-title">Get In Touch</h2>
 				<p>If you'd like to collaborate or discuss internship opportunities, feel free to reach out!</p>
-				<div className='cta-button'>
+
 					<div className="cta-button" onClick={() => window.location.href = "mailto:rayanakhtar1203@gmail.com"}>
-							<a href="#" className="contact-button">Email</a>
-					</div>
+              <div className='email-button'>
+							  <a href="#">Email</a>
+              </div>
+
 				</div>
 			</section>
 

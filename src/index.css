@@ -36,6 +36,7 @@
   --home-gradient-3: #4a5b70;
   --home-gradient-4: #2b435f;
   --home-gradient-end: var(--footer-bg-color);
+  --email-button-background: #263238;
 
   --blue-accent: blue;
   --blue-hover: rgb(121, 121, 180);
@@ -64,7 +65,7 @@
 /* Light Mode */
 .theme-light {
   --bg-color: #d8eff3; 
-  --text-color: #333333; 
+  --text-color: #110555; 
 
   /* Unified Backgrounds */
   --navbar-bg-color: #8db1b6; 
@@ -90,6 +91,10 @@
   --home-gradient-3: #bcd5d8;
   --home-gradient-4: #76989c;
   --home-gradient-end: #7494a3;
+  --email-button-background: #8db6bb;
+
+  --blue-accent: rgb(255, 255, 255);
+  --blue-hover: rgb(121, 121, 180);
 }
 
 /* Dark Mode */
@@ -120,6 +125,7 @@
   --home-gradient-3: #4a5b70;
   --home-gradient-4: #2b435f;
   --home-gradient-end: var(--footer-bg-color);
+  --email-button-background: #263238;
 
   --blue-accent: blue;
   --blue-hover: rgb(121, 121, 180);
