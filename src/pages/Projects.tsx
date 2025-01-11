@@ -36,7 +36,7 @@ const Projects: React.FC = () => {
       year: 'numeric',
       month: 'short',
     };
-    return date.toLocaleDateString('en-US', options);
+    return date.toLocaleDateString('en-US', options) != "Invalid Date" ? date.toLocaleDateString('en-US', options) : "Present";
   };
 
   // Format start and end dates
