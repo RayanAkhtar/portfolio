@@ -1,5 +1,5 @@
 import './App.css';
-import { HashRouter as Router, Route, Routes } from "react-router-dom"; // Change to HashRouter
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
@@ -18,6 +18,7 @@ import Contacts from "./pages/Contacts";
 import NotFound from './pages/NotFound';
 //import Fields from './pages/Fields';
 import Builder from './pages/Builder';
+import ProjectFilter from './pages/ProjectFilter';
 
 function App() {
   return (
@@ -29,8 +30,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<Builder />} />
-            <Route path="/spotlight" element={<Builder />} />
-            <Route path="/projects" element={<Builder />} />
+            <Route path="/spotlight" element={<ProjectFilter />} />
+            <Route path="/current" element={<ProjectFilter />} />
+            <Route path="/other" element={<ProjectFilter />} />
             <Route path="/projects/:projectName" element={<Projects />} />
             <Route path="/extracurricular" element={<Builder />} />
             <Route path="/interests" element={<Builder />} />

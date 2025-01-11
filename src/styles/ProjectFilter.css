@@ -1,0 +1,191 @@
+.project-filter-container {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    gap: 10px;
+}
+
+.filter-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    width: 100%;
+    background-color: var(--aside-bg-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.filter-group label {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.filter-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.filter-option {
+    padding: 8px 15px;
+    background-color: var(--home-gradient-2);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.filter-option:hover {
+    background-color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.filter-option.active {
+    background-color: var(--blue-hover);
+    color: white;
+}
+
+.projects-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 20px;
+    width: 80%;
+    max-width: 1400px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.project-card {
+    background-color: var(--aside-bg-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+    max-width: 1000px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0;
+    cursor: pointer;
+    text-decoration: none; 
+    color: inherit;
+}
+
+.project-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.project-card p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.project-thumbnail {
+    display: block;
+    margin: 15px auto;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+}
+
+
+.project-headline {
+    font-size: 1.4rem;
+    color: var(--primary-text-color);
+    margin: 10px 0;
+    text-align: center;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive layout for larger screens */
+@media screen and (min-width: 769px) {
+    .filters {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 0;
+    }
+
+    .filter-group {
+        flex: 1;
+    }
+
+    .filter-group:nth-child(1) {
+        max-width: 50%;
+    }
+
+    .filter-group:nth-child(2) {
+        max-width: 30%;
+    }
+
+    .filter-group:nth-child(3) {
+        max-width: 20%;
+    }
+}
+
+/* Adjust filters for smaller screens */
+@media screen and (max-width: 768px) {
+    .filter-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .filter-section {
+        max-width: 90%;
+        width: 100%;
+    }
+
+    .project-card {
+        max-width: 90%;
+    }
+}
+
+/* Adjust filters for very small screens */
+@media screen and (max-width: 480px) {
+    .filter-container {
+        padding: 10px;
+    }
+
+    .filter-section {
+        text-align: center;
+    }
+
+    .project-card {
+        padding: 20px;
+        max-width: 95%;
+    }
+}
