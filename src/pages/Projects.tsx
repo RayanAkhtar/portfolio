@@ -1,39 +1,63 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { FaGithub, FaLink } from 'react-icons/fa';
+import { getProject } from '../../api/firebase';
 import '../styles/Projects.css';
 
 const Projects: React.FC = () => {
-  const { /*projectName*/ } = useParams<{ projectName: string }>();
+  const { projectName } = useParams<{ projectName: string }>();
+  const [projectDetails, setProjectDetails] = useState<any | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  const projectDetails = {
-    name: "Personal Portfolio",
-    description: "Currently designing a website using TypeScript, React, and Node.js with Firebase as the backend.",
-    spotlight: true,
-    startDate: "2024-12-01",
-    endDate: "Present",
-    currentlyWorkingOn: true,
-    thumbnailImage: "/images/personalportfolio.png",
-    propertyNames: ["TypeScript", "React", "Node.js", "Firebase"],
-    achievements: [
-      "Designed and developed a responsive website with a focus on user experience.",
-      "Integrated backend and frontend technologies for a more pleasant experience when updating/arranging content."
-    ],
-    projectLinks: {
-      repo: "https://github.com/RayanAkhtar/portfolio",
-      website: "https://www.rayanakhtar.com/"
-    },
-    role: "Full Stack Developer",
-    outcome: "Ongoing website production, currently available under rayanakhtar.com, will update upon changes to project, interest, hobbies and achievements.",
-    keyLearning: "Experience with full stack development and modern web technologies.",
-    industry: "Full Stack"
+  useEffect(() => {
+    const fetchProject = async () => {
+      if (projectName) {
+        try {
+          const project = await getProject(projectName);
+          if (project) {
+            setProjectDetails(project);
+          } else {
+            console.error("Project not found");
+          }
+        } catch (error) {
+          console.error("Error fetching project:", error);
+        }
+        setLoading(false);
+      }
+    };
+
+    fetchProject();
+  }, [projectName]);
+
+  // Helper function to format the date to "MM/YYYY"
+  const formatDate = (dateString: string): string => {
+    const date = new Date(dateString);
+    const options: Intl.DateTimeFormatOptions = {
+      year: 'numeric',
+      month: 'short',
+    };
+    return date.toLocaleDateString('en-US', options);
   };
+
+  // Format start and end dates
+  const startDateFormatted = projectDetails ? formatDate(projectDetails.startDate) : '';
+  const endDateFormatted = projectDetails ? formatDate(projectDetails.endDate) : '';
+
+  // If the start and end dates are in the same month/year, show only the start date
+  const displayDate = startDateFormatted === endDateFormatted ? startDateFormatted : `${startDateFormatted} - ${endDateFormatted}`;
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!projectDetails) {
+    return <div>Project not found</div>;
+  }
 
   return (
     <div className="project-page">
       <header className="project-header">
         <div className="project-header-content">
-          
           {/* Top Row: Project Name and Details */}
           <div className="project-main">
             <h1 className="project-title">{projectDetails.name}</h1>
@@ -43,7 +67,7 @@ const Projects: React.FC = () => {
           {/* Project Info */}
           <div className="project-info">
             <p>
-              <strong>Dates:</strong> {projectDetails.startDate} - {projectDetails.endDate}
+              <strong>{displayDate}</strong> 
             </p>
             <p>
               <strong>Tech Used:</strong> {projectDetails.propertyNames.join(', ')}
@@ -87,7 +111,7 @@ const Projects: React.FC = () => {
       <div className="project-achievements">
         <h3>What This Project Achieves</h3>
         <ul>
-          {projectDetails.achievements.map((achievement, index) => (
+          {projectDetails.achievements.map((achievement: string, index: number) => (
             <li key={index}>{achievement}</li>
           ))}
         </ul>

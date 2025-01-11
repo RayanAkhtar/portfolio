@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, query, where, getDocs} from "firebase/firestore";
+import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
 
 const firebaseConfig = {
   "apiKey": "AIzaSyCivUgf1CwjNjJX7PGZkL607Zpcde9gsgo",
@@ -9,11 +9,10 @@ const firebaseConfig = {
   "messagingSenderId": "311757536682",
   "appId": "1:311757536682:web:469b801078f92fa4087fd3",
   "measurementId": "G-C6CB1F03Y1"
-}
+};
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
 
 interface IProject {
   name: string;
@@ -24,9 +23,18 @@ interface IProject {
   currentlyWorkingOn: boolean;
   thumbnailImage: string;
   propertyNames: string[];
+  achievements: string[];
+  projectLinks: {
+    repo: string;
+    website: string;
+  };
+  role: string;
+  outcome: string;
+  keyLearning: string;
+  industry: string;
 }
 
-// fetches spotlight projects
+// Fetches spotlight projects
 const getSpotlightProjects = async (): Promise<IProject[]> => {
   try {
     const q = query(collection(db, "projects"), where("spotlight", "==", true));
@@ -42,7 +50,7 @@ const getSpotlightProjects = async (): Promise<IProject[]> => {
   }
 };
 
-// fetches projects currently being worked on
+// Fetches projects currently being worked on
 const getCurrentlyWorkingOnProjects = async (): Promise<IProject[]> => {
   try {
     const q = query(collection(db, "projects"), where("currentlyWorkingOn", "==", true));
@@ -58,7 +66,7 @@ const getCurrentlyWorkingOnProjects = async (): Promise<IProject[]> => {
   }
 };
 
-// fetches projects that are neither spotlight nor being worked on
+// Fetches projects that are neither spotlight nor being worked on
 const getOtherProjects = async (): Promise<IProject[]> => {
   try {
     const q = query(
@@ -78,7 +86,7 @@ const getOtherProjects = async (): Promise<IProject[]> => {
   }
 };
 
-// fetches all projects
+// Fetches all projects
 const getProjects = async (): Promise<IProject[]> => {
   try {
     const querySnapshot = await getDocs(collection(db, "projects"));
@@ -94,10 +102,26 @@ const getProjects = async (): Promise<IProject[]> => {
 };
 
 
+const getProject = async (name: string): Promise<IProject | null> => {
+  try {
+    const q = query(collection(db, "projects"), where("name", "==", name));
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      const projectDoc = querySnapshot.docs[0];
+      return projectDoc.data() as IProject;
+    }
+    return null;
+  } catch (error) {
+    console.error("Error fetching project by name:", error);
+    return null;
+  }
+};
+
 // Export functions for use elsewhere
 export {
   getSpotlightProjects,
   getCurrentlyWorkingOnProjects,
   getOtherProjects,
   getProjects,
+  getProject, // Added getProject function to be exported
 };

@@ -90,7 +90,7 @@
     margin-top: 20px;
     width: 120%;
     max-width: 600px;
-    height: 300px;
+    height: auto;
     box-sizing: border-box;
     overflow: hidden;
     position: relative;
@@ -102,13 +102,11 @@
 
 /* The image inside the placeholder */
 .project-image-placeholder img {
-    object-fit: cover;
-    object-position: center;
     width: 100%;
-    border-radius: 20px;
     height: 100%;
-    max-width: none;
-    max-height: none;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 20px;
 }
 
 /* Description Section */
@@ -245,12 +243,13 @@
 
 /* Adjustments for Larger Devices */
 @media screen and (min-width: 769px) {
-
+    /* Center the content vertically for the header content */
     .project-header-content {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        align-items: flex-start;
+        align-items: center;
+        height: 100%;
     }
 
     /* Project Title (Left side) */
@@ -268,18 +267,7 @@
         color: var(--text-color);
         border-radius: 10px;
         margin-left: 20px;
-    }
-
-    /* Styled Box for the Project Info */
-    .project-info-box {
-        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-        padding: 20px;
-        border-radius: 15px;
-        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-        color: white;
-        text-align: center;
-        font-size: 1.2rem;
-        margin-top: 20px;
+        margin-top: 30px;
     }
 
     /* Ensure the project image placeholder scales nicely */
@@ -288,6 +276,7 @@
         object-position: center; 
     }
 }
+
 
 @media screen and (max-width: 480px) {
     .project-title {
