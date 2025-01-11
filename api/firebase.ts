@@ -123,5 +123,5 @@ export {
   getCurrentlyWorkingOnProjects,
   getOtherProjects,
   getProjects,
-  getProject, // Added getProject function to be exported
+  getProject,
 };

@@ -110,11 +110,22 @@ h2 {
 }
 
 .project-thumbnail {
-    display: block;
-    margin: 15px auto;
+    color: var(--text-color); 
+    text-align: center;
+    padding: 40px;
+    font-size: 1rem;
+    border-radius: 5px;
+    margin-top: 20px;
     width: 100%;
-    max-width: 300px;
-    border-radius: 8px;
+    max-width: 600px;
+    height: auto;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    animation: fadeIn 1.5s ease-out;
 }
 
 

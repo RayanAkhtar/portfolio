@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
+import { getProjects } from '../../api/firebase';
 import '../styles/ProjectFilter.css';
 
 type ProjectData = {
@@ -22,40 +23,37 @@ type ProjectData = {
   industry: string;
 };
 
-const projectsData: ProjectData[] = [
-  {
-    name: "Personal Portfolio",
-    description: "Currently designing a website using TypeScript, React, and Node.js with Firebase as the backend.",
-    spotlight: true,
-    startDate: "2024-12-01",
-    endDate: "Present",
-    currentlyWorkingOn: true,
-    thumbnailImage: "/images/new-portfolio.png",
-    propertyNames: ["TypeScript", "React", "Node.js", "Firebase"],
-    achievements: [
-      "Designed and developed a responsive website with a focus on user experience.",
-      "Integrated backend and frontend technologies for a more pleasant experience when updating/arranging content.",
-    ],
-    projectLinks: {
-      repo: "https://github.com/RayanAkhtar/portfolio",
-      website: "https://www.rayanakhtar.com/",
-    },
-    role: "Full Stack Developer",
-    outcome: "Ongoing website production, currently available under rayanakhtar.com, will update upon changes to project, interest, hobbies and achievements.",
-    keyLearning: "Experience with full stack development and modern web technologies.",
-    industry: "Full Stack",
-  },
-  // Add more project entries as needed
-];
-
 const ProjectFilter: React.FC = () => {
-  const [filteredProjects, setFilteredProjects] = useState<ProjectData[]>(projectsData);
-  const [techFilter, setTechFilter] = useState<string[]>([]);
-  const [industryFilter, setIndustryFilter] = useState<string>("");
-  const [categoryFilter, setCategoryFilter] = useState<string>("");
+  const [projectsData, setProjectsData] = useState<ProjectData[]>([]); 
+  const [filteredProjects, setFilteredProjects] = useState<ProjectData[]>([]); 
+  const [techFilter, setTechFilter] = useState<string[]>([]); 
+  const [industryFilter, setIndustryFilter] = useState<string>(""); 
+  const [categoryFilter, setCategoryFilter] = useState<string>(""); 
+  const [loading, setLoading] = useState<boolean>(true); 
   const location = useLocation();
-  const navigate = useNavigate();
 
+  // Fetch projects and sort them by the most recent first (based on endDate or 'present')
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        setLoading(true); 
+        const projects = await getProjects(); 
+        // Sort projects by endDate, treating 'present' as the most recent
+        const sortedProjects = projects.sort((a, b) => {
+          const endDateA = a.endDate === 'Present' ? new Date() : new Date(a.endDate);
+          const endDateB = b.endDate === 'Present' ? new Date() : new Date(b.endDate);
+          return endDateB.getTime() - endDateA.getTime(); // Most recent first
+        });
+        setProjectsData(sortedProjects); 
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      } finally {
+        setLoading(false); 
+      }
+    };
+
+    fetchProjects(); 
+  }, []);
 
   const technologies = Array.from(
     new Set(projectsData.flatMap((project) => project.propertyNames))
@@ -63,7 +61,6 @@ const ProjectFilter: React.FC = () => {
   const industries = Array.from(new Set(projectsData.map((project) => project.industry)));
   const categories = ["Spotlight", "Currently Working On"];
 
-  // Update the category filter state based on the URL path
   useEffect(() => {
     const path = location.pathname;
     if (path.includes('spotlight')) {
@@ -89,6 +86,7 @@ const ProjectFilter: React.FC = () => {
     }
   };
 
+  // Filter projects based on selected filters
   useEffect(() => {
     let filtered = projectsData;
 
@@ -109,15 +107,17 @@ const ProjectFilter: React.FC = () => {
     }
 
     setFilteredProjects(filtered);
-  }, [techFilter, industryFilter, categoryFilter]);
+  }, [techFilter, industryFilter, categoryFilter, projectsData]);
 
+  if (loading) {
+    return <div>Loading projects...</div>;
+  }
 
   return (
     <div className="project-filter-container">
       <div className="filter-section">
         <h2>Filter Projects</h2>
         <div className="filters">
-          {/* Technologies Filter */}
           <div className="filter-group">
             <label>Technologies</label>
             <div className="filter-options">
@@ -133,7 +133,6 @@ const ProjectFilter: React.FC = () => {
             </div>
           </div>
 
-          {/* Industry Filter */}
           <div className="filter-group">
             <label>Industry</label>
             <div className="filter-options">
@@ -149,7 +148,6 @@ const ProjectFilter: React.FC = () => {
             </div>
           </div>
 
-          {/* Category Filter */}
           <div className="filter-group">
             <label>Category</label>
             <div className="filter-options">
@@ -167,11 +165,10 @@ const ProjectFilter: React.FC = () => {
         </div>
       </div>
 
-      {/* Display filtered projects */}
       <div className="projects-list">
         {filteredProjects.length > 0 ? (
           filteredProjects.map((project) => (
-            <div key={project.name} className="project-card">
+            <Link to={`/projects/${project.name}`} key={project.name} className="project-card">
               <h3>{project.name}</h3>
               <p className="project-headline">{project.description}</p>
               <img
@@ -182,7 +179,7 @@ const ProjectFilter: React.FC = () => {
               <p><strong>Category:</strong> {project.spotlight ? "Spotlight" : "General"}</p>
               <p><strong>Technologies:</strong> {project.propertyNames.join(', ')}</p>
               <p><strong>Industry:</strong> {project.industry}</p>
-            </div>
+            </Link>
           ))
         ) : (
           <div>No projects found</div>
