@@ -15,6 +15,6 @@ button {
 .main-content {
   flex: 1;
   width: 100%;
-  /* margin-top: 90px; */
+  background: linear-gradient(180deg, var(--home-gradient-begin), var(--home-gradient-2), var(--home-gradient-3), var(--home-gradient-4), var(--home-gradient-end));;
 }
 
