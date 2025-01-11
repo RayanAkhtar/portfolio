@@ -7,7 +7,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 //import About from "./pages/About";
 //import Spotlight from "./pages/Spotlight";
-//import Projects from "./pages/Projects";
+import Projects from "./pages/Projects";
 //import Extracurricular from "./pages/Extracurricular";
 //import Interests from "./pages/Interests";
 import Contacts from "./pages/Contacts";
@@ -31,7 +31,7 @@ function App() {
             <Route path="/about" element={<Builder />} />
             <Route path="/spotlight" element={<Builder />} />
             <Route path="/projects" element={<Builder />} />
-            <Route path="/projects/:projectName" element={<Builder />} />
+            <Route path="/projects/:projectName" element={<Projects />} />
             <Route path="/extracurricular" element={<Builder />} />
             <Route path="/interests" element={<Builder />} />
             <Route path="/contact" element={<Contacts />} />

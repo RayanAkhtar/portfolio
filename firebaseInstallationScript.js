@@ -1,8 +1,16 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, doc, setDoc } from "firebase/firestore";
 import fs from 'fs'; 
-import * as firebaseConfig from "./api/firebaseConfig.json";
 
+const firebaseConfig = {
+  "apiKey": "AIzaSyCivUgf1CwjNjJX7PGZkL607Zpcde9gsgo",
+  "authDomain": "portfolio-2e98e.firebaseapp.com",
+  "projectId": "portfolio-2e98e",
+  "storageBucket": "portfolio-2e98e.firebasestorage.app",
+  "messagingSenderId": "311757536682",
+  "appId": "1:311757536682:web:469b801078f92fa4087fd3",
+  "measurementId": "G-C6CB1F03Y1"
+};
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
