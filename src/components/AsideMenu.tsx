@@ -40,7 +40,7 @@ const AsideMenu: React.FC<{ isOpen: boolean; closeMenu: () => void }> = ({
 
         const spotlightMenu: MenuItem = {
           label: "Spotlight",
-          path: "/spotlight",
+          path: "/projectFilter:spotlight", // Updated path
           subItems: spotlightData.map((project) => ({
             label: project.name,
             path: `/projects/${project.name}`,
@@ -49,7 +49,7 @@ const AsideMenu: React.FC<{ isOpen: boolean; closeMenu: () => void }> = ({
 
         const currentProjectsMenu: MenuItem = {
           label: "Current Projects",
-          path: "/current",
+          path: "/projectFilter:current", // Updated path
           subItems: currentData.map((project) => ({
             label: project.name,
             path: `/projects/${project.name}`,
@@ -58,13 +58,12 @@ const AsideMenu: React.FC<{ isOpen: boolean; closeMenu: () => void }> = ({
 
         const otherProjectsMenu: MenuItem = {
           label: "Other Projects",
-          path: "/other",
+          path: "/projectFilter", // Updated path
           subItems: otherData.map((project) => ({
             label: project.name,
             path: `/projects/${project.name}`,
           })),
         };
-
 
         const newMenuItems = [
           spotlightMenu,
@@ -72,7 +71,6 @@ const AsideMenu: React.FC<{ isOpen: boolean; closeMenu: () => void }> = ({
           otherProjectsMenu,
         ];
 
-        // Removing duplicates based on the label or path
         setMenuItems((prevMenuItems) => {
           const aboutPath = prevMenuItems[0];
           const existingPaths = new Set(prevMenuItems.map((item) => item.path));
@@ -112,7 +110,6 @@ const AsideMenu: React.FC<{ isOpen: boolean; closeMenu: () => void }> = ({
     closeMenu();
   };
 
-  // Switch theme function
   const toggleTheme = () => {
     setTheme((prevTheme) => {
       const newTheme = prevTheme === 'light' ? 'dark' : 'light';
@@ -131,8 +128,8 @@ const AsideMenu: React.FC<{ isOpen: boolean; closeMenu: () => void }> = ({
 
       <div className="day-toggle">
         <label className="switch">
-            <input type="checkbox" onClick={toggleTheme} checked={theme != "light"}/>
-            <span className="slider"></span>
+          <input type="checkbox" onClick={toggleTheme} checked={theme != "light"}/>
+          <span className="slider"></span>
         </label>
       </div>
 

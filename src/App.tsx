@@ -30,9 +30,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<Builder />} />
-            <Route path="/spotlight" element={<ProjectFilter />} />
-            <Route path="/current" element={<ProjectFilter />} />
-            <Route path="/other" element={<ProjectFilter />} />
+            <Route path="/projectFilter:spotlight" element={<ProjectFilter />} />
+            <Route path="/projectFilter:current" element={<ProjectFilter />} />
+            <Route path="/projectFilter" element={<ProjectFilter />} />
             <Route path="/projects/:projectName" element={<Projects />} />
             <Route path="/extracurricular" element={<Builder />} />
             <Route path="/interests" element={<Builder />} />

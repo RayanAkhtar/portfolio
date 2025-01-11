@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import '../styles/ProjectFilter.css';
 
 type ProjectData = {
@@ -53,13 +53,27 @@ const ProjectFilter: React.FC = () => {
   const [techFilter, setTechFilter] = useState<string[]>([]);
   const [industryFilter, setIndustryFilter] = useState<string>("");
   const [categoryFilter, setCategoryFilter] = useState<string>("");
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  // Extract filter options dynamically
+
   const technologies = Array.from(
     new Set(projectsData.flatMap((project) => project.propertyNames))
   );
   const industries = Array.from(new Set(projectsData.map((project) => project.industry)));
   const categories = ["Spotlight", "Currently Working On"];
+
+  // Update the category filter state based on the URL path
+  useEffect(() => {
+    const path = location.pathname;
+    if (path.includes('spotlight')) {
+      setCategoryFilter('Spotlight');
+    } else if (path.includes('current')) {
+      setCategoryFilter('Currently Working On');
+    } else {
+      setCategoryFilter('');
+    }
+  }, [location]);
 
   const toggleFilter = (type: string, value: string) => {
     if (type === 'tech') {
@@ -96,6 +110,7 @@ const ProjectFilter: React.FC = () => {
 
     setFilteredProjects(filtered);
   }, [techFilter, industryFilter, categoryFilter]);
+
 
   return (
     <div className="project-filter-container">
@@ -156,7 +171,7 @@ const ProjectFilter: React.FC = () => {
       <div className="projects-list">
         {filteredProjects.length > 0 ? (
           filteredProjects.map((project) => (
-            <Link key={project.name} to={`/projects/${project.name}`} className="project-card">
+            <div key={project.name} className="project-card">
               <h3>{project.name}</h3>
               <p className="project-headline">{project.description}</p>
               <img
@@ -167,7 +182,7 @@ const ProjectFilter: React.FC = () => {
               <p><strong>Category:</strong> {project.spotlight ? "Spotlight" : "General"}</p>
               <p><strong>Technologies:</strong> {project.propertyNames.join(', ')}</p>
               <p><strong>Industry:</strong> {project.industry}</p>
-            </Link>
+            </div>
           ))
         ) : (
           <div>No projects found</div>
