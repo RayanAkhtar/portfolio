@@ -4,19 +4,23 @@ import { Link } from 'react-router-dom';
 import {
   getSpotlightProjects,
   getCurrentlyWorkingOnProjects,
+  getProjects,
+  getIndustryDescription,
 } from "../../api/firebase";
-
 
 interface Project {
   name: string;
   description: string;
   link?: string;
   thumbnailImage: string;
+  industry: string;
 }
 
 const Home: React.FC = () => {
   const [spotlightProjects, setSpotlightProjects] = useState<Project[]>([]);
   const [currentlyWorkingOn, setCurrentlyWorkingOn] = useState<Project[]>([]);
+  const [topIndustries, setTopIndustries] = useState<{ industry: string; count: number }[]>([]);
+  const [industryDescriptions, setIndustryDescriptions] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
     getSpotlightProjects().then((projects) => {
@@ -25,6 +29,31 @@ const Home: React.FC = () => {
 
     getCurrentlyWorkingOnProjects().then((projects) => {
       setCurrentlyWorkingOn(projects);
+    });
+
+    getProjects().then((projects) => {
+      const industryCount: Record<string, number> = {};
+
+      projects.forEach((project) => {
+        if (project.industry) {
+          industryCount[project.industry] = (industryCount[project.industry] || 0) + 1;
+        }
+      });
+
+      const sortedIndustries = Object.entries(industryCount)
+        .map(([industry, count]) => ({ industry, count }))
+        .sort((a, b) => b.count - a.count);
+
+      setTopIndustries(sortedIndustries.slice(0, 4));
+
+      sortedIndustries.slice(0, 4).forEach((industryData) => {
+        getIndustryDescription(industryData.industry).then((description) => {
+          setIndustryDescriptions((prevState) => ({
+            ...prevState,
+            [industryData.industry]: description || 'No description available',
+          }));
+        });
+      });
     });
   }, []);
 
@@ -40,29 +69,29 @@ const Home: React.FC = () => {
           </p>
         </div>
         <div className="cta-button">
-          <Link to="/contact" className='contact-button'>Contact</Link>
+          <Link to="/contact" className="contact-button">Contact</Link>
         </div>
       </div>
 
+      <section id="industries" className="industries-section">
+        <h2 className="section-title">Top Industries</h2>
+        <div className="industries-grid">
+          {topIndustries.length === 0 ? (
+            <p>Loading industries...</p>
+          ) : (
+            topIndustries.map((industryData, index) => (
+              <div key={index} className="industry-card">
+                <h3>{industryData.industry}</h3>
+                <p>{industryDescriptions[industryData.industry]}</p>
+                <p>{industryData.count} projects</p>
+              </div>
+            ))
+          )}
+        </div>
 
-      <section id="skills" className="skills-section">
-        <h2 className="section-title">Skills & Experience</h2>
-        <div className="skills-grid">
-          <Link to="/fields" className="skill-card">
-            <h3>Machine Learning</h3>
-            <p>Experience in building ML models, data preprocessing, and implementing algorithms to solve real-world problems.</p>
-          </Link>
-          <Link to="/fields" className="skill-card">
-            <h3>Data Science</h3>
-            <p>Proficient in data analysis, statistical modeling, and visualizations using tools like Python, Pandas, and Matplotlib.</p>
-          </Link>
-          <Link to="/fields" className="skill-card">
-            <h3>Software Engineering</h3>
-            <p>Worked on various full-stack projects, focusing on efficient code design, debugging, and implementing features.</p>
-          </Link>
-          <Link to="/fields" className="skill-card">
-            <h3>Full-Stack Development</h3>
-            <p>Experienced in developing both front-end (React, TypeScript) and back-end (Node.js, Express) systems with a focus on user experience.</p>
+        <div className="cta-button">
+          <Link to="/projectFilter" className="explore-more-button">
+            Explore More Projects
           </Link>
         </div>
       </section>
@@ -94,7 +123,7 @@ const Home: React.FC = () => {
               <Link key={index} to={`/projects/${project.name}`} className="project-card">
                 <h3>{project.name}</h3>
                 <p>{project.description}</p>
-                <img src={project.thumbnailImage} alt={project.name} className="project-thumbnail"/>
+                <img src={project.thumbnailImage} alt={project.name} className="project-thumbnail" />
               </Link>
             ))
           )}
@@ -105,7 +134,7 @@ const Home: React.FC = () => {
         <h2 className="section-title">Get In Touch</h2>
         <p>If you'd like to collaborate or discuss internship opportunities, feel free to reach out!</p>
         <div className="cta-button" onClick={() => window.location.href = "mailto:rayanakhtar1203@gmail.com"}>
-          <div className='email-button'>
+          <div className="email-button">
             <a href="#">Email</a>
           </div>
         </div>
