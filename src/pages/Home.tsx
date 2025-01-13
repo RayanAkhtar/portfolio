@@ -17,7 +17,7 @@ interface Project {
 }
 
 const Home: React.FC = () => {
-  const [spotlightProjects, setSpotlightProjects] = useState<Project[]>([]);
+  const [spotlightProjects, setSpotlightProjects] = useState<Project[]>([]); 
   const [currentlyWorkingOn, setCurrentlyWorkingOn] = useState<Project[]>([]);
   const [topIndustries, setTopIndustries] = useState<{ industry: string; count: number }[]>([]);
   const [industryDescriptions, setIndustryDescriptions] = useState<{ [key: string]: string }>({});
@@ -73,6 +73,7 @@ const Home: React.FC = () => {
         </div>
       </div>
 
+      {/* Top Industries Section */}
       <section id="industries" className="industries-section">
         <h2 className="section-title">Top Industries</h2>
         <div className="industries-grid">
@@ -80,11 +81,11 @@ const Home: React.FC = () => {
             <p>Loading industries...</p>
           ) : (
             topIndustries.map((industryData, index) => (
-              <div key={index} className="industry-card">
+              <Link key={index} to={`/projectFilter/:${industryData.industry}`} className="industry-card">
                 <h3>{industryData.industry}</h3>
                 <p>{industryDescriptions[industryData.industry]}</p>
                 <p>{industryData.count} projects</p>
-              </div>
+              </Link>
             ))
           )}
         </div>

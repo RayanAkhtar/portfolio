@@ -31,7 +31,6 @@ const AsideMenu: React.FC<{ isOpen: boolean; closeMenu: () => void }> = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch data in parallel
         const [spotlightData, currentData, otherData] = await Promise.all([
           getSpotlightProjects(),
           getCurrentlyWorkingOnProjects(),
@@ -40,7 +39,7 @@ const AsideMenu: React.FC<{ isOpen: boolean; closeMenu: () => void }> = ({
 
         const spotlightMenu: MenuItem = {
           label: "Spotlight",
-          path: "/projectFilter:spotlight", // Updated path
+          path: "/projectFilter/:spotlight",
           subItems: spotlightData.map((project) => ({
             label: project.name,
             path: `/projects/${project.name}`,
@@ -49,7 +48,7 @@ const AsideMenu: React.FC<{ isOpen: boolean; closeMenu: () => void }> = ({
 
         const currentProjectsMenu: MenuItem = {
           label: "Current Projects",
-          path: "/projectFilter:current", // Updated path
+          path: "/projectFilter/:current",
           subItems: currentData.map((project) => ({
             label: project.name,
             path: `/projects/${project.name}`,
@@ -58,7 +57,7 @@ const AsideMenu: React.FC<{ isOpen: boolean; closeMenu: () => void }> = ({
 
         const otherProjectsMenu: MenuItem = {
           label: "Other Projects",
-          path: "/projectFilter", // Updated path
+          path: "/projectFilter",
           subItems: otherData.map((project) => ({
             label: project.name,
             path: `/projects/${project.name}`,
