@@ -5,7 +5,7 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 
 import Home from './pages/Home';
-//import About from "./pages/About";
+import About from "./pages/About";
 //import Spotlight from "./pages/Spotlight";
 import Projects from "./pages/Projects";
 //import Extracurricular from "./pages/Extracurricular";
@@ -16,10 +16,10 @@ import Contacts from "./pages/Contacts";
 //import Frameworks from "./pages/Frameworks";
 //import Tools from "./pages/Tools";
 //import Fields from './pages/Fields';
-//import Experience from './pages/Experience'
 import Builder from './pages/Builder';
 import ProjectFilter from './pages/ProjectFilter';
 import NotFound from './pages/NotFound';
+import Experience from './pages/Experience';
 
 function App() {
   return (
@@ -30,7 +30,7 @@ function App() {
         <div className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<Builder />} />
+            <Route path="/about" element={<About />} />
             <Route path="/projectFilter/:paramName" element={<ProjectFilter />} />
             <Route path="/projectFilter" element={<ProjectFilter />} />
             
@@ -38,7 +38,7 @@ function App() {
             <Route path="/projects/:projectName" element={<Projects />} />
             
             {/* Other routes */}
-            <Route path="/experience" element={<Builder />} />
+            <Route path="/experience/:experienceName" element={<Experience />} />
             <Route path="/extracurricular" element={<Builder />} />
             <Route path="/interests" element={<Builder />} />
             <Route path="/contact" element={<Contacts />} />

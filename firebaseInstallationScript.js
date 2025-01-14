@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, doc, setDoc } from "firebase/firestore";
+import { getFirestore, collection, doc, setDoc, query, where, getDocs } from "firebase/firestore";
 import fs from 'fs'; 
 
 const firebaseConfig = {
@@ -26,7 +26,7 @@ const loadJson = (filePath) => {
   }
 };
 
-// insert or update a project in Firestore
+// Insert or update a project in Firestore
 const insertProject = async (project) => {
   try {
     const projectRef = doc(db, "projects", project.name);
@@ -37,7 +37,7 @@ const insertProject = async (project) => {
   }
 };
 
-// insert or update a property in Firestore
+// Insert or update a property in Firestore
 const insertProperty = async (property) => {
   try {
     const propertyRef = doc(db, "properties", property.name);
@@ -48,10 +48,39 @@ const insertProperty = async (property) => {
   }
 };
 
-// upload to Firestore
-const processFiles = async (projectsFile, propertiesFile) => {
+// Check if an experience with the same name and role already exists in Firestore
+const experienceExists = async (name, role) => {
+  const experiencesRef = collection(db, "experiences");
+  const q = query(experiencesRef, where("name", "==", name), where("role", "==", role));
+  const querySnapshot = await getDocs(q);
+  return !querySnapshot.empty;
+};
+
+// Insert or update an experience in Firestore (with the "role" and "name" check)
+const insertExperience = async (experience) => {
+  try {
+    const exists = await experienceExists(experience.name, experience.role);
+    if (exists) {
+      // Experience exists, update it
+      const experienceRef = doc(db, "experiences", `${experience.name}`);
+      await setDoc(experienceRef, experience);
+      console.log(`Updated experience: ${experience.name} - ${experience.role}`);
+    } else {
+      // Experience does not exist, insert new one
+      const experienceRef = doc(db, "experiences", `${experience.name}`);
+      await setDoc(experienceRef, experience);
+      console.log(`Inserted new experience: ${experience.name} - ${experience.role}`);
+    }
+  } catch (error) {
+    console.error(`Error processing experience '${experience.name}' - '${experience.role}':`, error);
+  }
+};
+
+// Upload to Firestore
+const processFiles = async (projectsFile, propertiesFile, experiencesFile) => {
   const projects = loadJson(projectsFile);
   const properties = loadJson(propertiesFile);
+  const experiences = loadJson(experiencesFile);
 
   for (const project of projects) {
     await insertProject(project);
@@ -60,12 +89,17 @@ const processFiles = async (projectsFile, propertiesFile) => {
   for (const property of properties) {
     await insertProperty(property);
   }
+
+  for (const experience of experiences) {
+    await insertExperience(experience);
+  }
 };
 
 // Main function
 (async () => {
   const projectsFile = 'projects.json';
   const propertiesFile = 'properties.json';
+  const experiencesFile = 'experiences.json';
 
-  await processFiles(projectsFile, propertiesFile);
+  await processFiles(projectsFile, propertiesFile, experiencesFile);
 })();

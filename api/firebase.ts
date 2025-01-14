@@ -34,6 +34,18 @@ interface IProject {
   industry: string;
 }
 
+interface IExperience {
+  name: string;
+  role: string;
+  description: string;
+  startDate: string;
+  endDate: string;
+  thumbnailImage?: string;
+  achievements?: string[];
+  websiteLinks?: string[];
+  type: "work" | "other" | "education";
+}
+
 // Fetches spotlight projects
 const getSpotlightProjects = async (): Promise<IProject[]> => {
   try {
@@ -134,6 +146,54 @@ const getIndustryDescription = async (industryName: string): Promise<string | nu
   }
 };
 
+// Fetches all experiences
+const getExperiences = async (): Promise<IExperience[]> => {
+  try {
+    const querySnapshot = await getDocs(collection(db, "experiences"));
+    const experiences: IExperience[] = [];
+    querySnapshot.forEach((doc) => {
+      experiences.push(doc.data() as IExperience);
+    });
+    return experiences;
+  } catch (error) {
+    console.error("Error fetching all experiences:", error);
+    return [];
+  }
+};
+
+
+// Fetches experiences by type
+const getExperiencesByType = async (type: "work" | "other" | "education"): Promise<IExperience[]> => {
+  try {
+    const q = query(collection(db, "experiences"), where("type", "==", type));
+    const querySnapshot = await getDocs(q);
+    const experiences: IExperience[] = [];
+    querySnapshot.forEach((doc) => {
+      experiences.push(doc.data() as IExperience);
+    });
+    return experiences;
+  } catch (error) {
+    console.error(`Error fetching experiences of type '${type}':`, error);
+    return [];
+  }
+};
+
+// Fetches a specific experience by name
+const getExperienceByName = async (name: string): Promise<IExperience | null> => {
+  try {
+    const q = query(collection(db, "experiences"), where("name", "==", name));
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      const experienceDoc = querySnapshot.docs[0];
+      return experienceDoc.data() as IExperience;
+    }
+    return null;
+  } catch (error) {
+    console.error(`Error fetching experience by name '${name}':`, error);
+    return null;
+  }
+};
+
 // Export functions for use elsewhere
 export {
   getSpotlightProjects,
@@ -141,5 +201,8 @@ export {
   getOtherProjects,
   getProjects,
   getProject,
-  getIndustryDescription
+  getIndustryDescription,
+  getExperiences,
+  getExperienceByName,
+  getExperiencesByType
 };
