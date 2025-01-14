@@ -106,7 +106,7 @@ const About: React.FC = () => {
                   <div
                     className="timeline-card"
                     style={{ backgroundColor: getCardColor(event.type) }}
-                    onClick={() => navigate(`/events/${event.name}`)} 
+                    onClick={() => navigate(`/experience/${event.name}`)} 
                   >
                     <div className="timeline-card-title">
                       {event.name}

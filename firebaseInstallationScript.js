@@ -61,14 +61,18 @@ const insertExperience = async (experience) => {
   try {
     const exists = await experienceExists(experience.name, experience.role);
     if (exists) {
-      console.log(`Experience with name '${experience.name}' and role '${experience.role}' already exists. Skipping insert.`);
-    } else {
-      const experienceRef = doc(db, "experiences", experience.name);
+      // Experience exists, update it
+      const experienceRef = doc(db, "experiences", `${experience.name}`);
       await setDoc(experienceRef, experience);
-      console.log(`Inserted new experience: ${experience.name}`);
+      console.log(`Updated experience: ${experience.name} - ${experience.role}`);
+    } else {
+      // Experience does not exist, insert new one
+      const experienceRef = doc(db, "experiences", `${experience.name}`);
+      await setDoc(experienceRef, experience);
+      console.log(`Inserted new experience: ${experience.name} - ${experience.role}`);
     }
   } catch (error) {
-    console.error(`Error processing experience '${experience.name}':`, error);
+    console.error(`Error processing experience '${experience.name}' - '${experience.role}':`, error);
   }
 };
 
