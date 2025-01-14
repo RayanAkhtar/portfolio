@@ -4,6 +4,18 @@ import { FaLink } from 'react-icons/fa';
 import { getExperienceByName } from '../../api/firebase';
 import '../styles/Experience.css';
 
+interface IExperience {
+  name: string;
+  role: string;
+  description: string;
+  startDate: string;
+  endDate: string;
+  thumbnailImage?: string;
+  achievements?: string[];
+  websiteLinks?: string[];
+  type: "work" | "other" | "education";
+}
+
 const Experience: React.FC = () => {
   const { experienceName } = useParams<{ experienceName: string }>();
   const [experienceDetails, setExperienceDetails] = useState<IExperience | null>(null);
