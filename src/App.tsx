@@ -5,7 +5,7 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 
 import Home from './pages/Home';
-//import About from "./pages/About";
+import About from "./pages/About";
 //import Spotlight from "./pages/Spotlight";
 import Projects from "./pages/Projects";
 //import Extracurricular from "./pages/Extracurricular";
@@ -30,7 +30,7 @@ function App() {
         <div className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/about" element={<Builder />} />
+            <Route path="/about" element={<About />} />
             <Route path="/projectFilter/:paramName" element={<ProjectFilter />} />
             <Route path="/projectFilter" element={<ProjectFilter />} />
             
