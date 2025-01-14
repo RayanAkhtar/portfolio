@@ -3,6 +3,18 @@ import { useNavigate } from "react-router-dom";
 import { getExperiences } from "../../api/firebase";
 import "../styles/About.css";
 
+interface IExperience {
+  name: string;
+  role: string;
+  description: string;
+  startDate: string;
+  endDate: string;
+  thumbnailImage?: string;
+  achievements?: string[];
+  websiteLinks?: string[];
+  type: "work" | "other" | "education";
+}
+
 // Helper function to format the date from "YYYY-MM"
 const formatDate = (date: string) => {
   if (date === "present") {
