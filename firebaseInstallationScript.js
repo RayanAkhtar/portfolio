@@ -62,12 +62,12 @@ const insertExperience = async (experience) => {
     const exists = await experienceExists(experience.name, experience.role);
     if (exists) {
       // Experience exists, update it
-      const experienceRef = doc(db, "experiences", `${experience.name}`);
+      const experienceRef = doc(db, "experiences", `${experience.name}-${experience.role}`);
       await setDoc(experienceRef, experience);
       console.log(`Updated experience: ${experience.name} - ${experience.role}`);
     } else {
       // Experience does not exist, insert new one
-      const experienceRef = doc(db, "experiences", `${experience.name}`);
+      const experienceRef = doc(db, "experiences", `${experience.name}-${experience.role}`);
       await setDoc(experienceRef, experience);
       console.log(`Inserted new experience: ${experience.name} - ${experience.role}`);
     }
