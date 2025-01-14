@@ -3,8 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "../styles/asideMenu.css";
 import {
   getSpotlightProjects,
-  getCurrentlyWorkingOnProjects,
-  getOtherProjects,
+  getCurrentlyWorkingOnProjects
 } from "../../api/firebase";
 
 interface MenuItem {
