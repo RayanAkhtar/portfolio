@@ -59,23 +59,9 @@ const Navbar: React.FC = () => {
 
         {/* Dropdown Icon '</>' */}
         <div className="dropdown-container">
+          <Link to="/projectfilter">
           <div className="dropdown-icon">{'</>'}</div>
-          <div className="dropdown-menu">
-            <ul>
-              <Link to="/languages" className="dropdown-link">
-                Languages
-              </Link>
-              <Link to="/technologies" className="dropdown-link">
-                Technologies
-              </Link>
-              <Link to="/frameworks" className="dropdown-link">
-                Frameworks
-              </Link>
-              <Link to="/tools" className="dropdown-link">
-                Tools
-              </Link>
-            </ul>
-          </div>
+          </Link>
         </div>
       </div>
     </nav>

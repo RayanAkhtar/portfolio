@@ -15,10 +15,11 @@ import Contacts from "./pages/Contacts";
 //import Technologies from "./pages/Technologies";
 //import Frameworks from "./pages/Frameworks";
 //import Tools from "./pages/Tools";
-import NotFound from './pages/NotFound';
 //import Fields from './pages/Fields';
+//import Experience from './pages/Experience'
 import Builder from './pages/Builder';
 import ProjectFilter from './pages/ProjectFilter';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -30,10 +31,14 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<Builder />} />
-            <Route path="/projectFilter:spotlight" element={<ProjectFilter />} />
-            <Route path="/projectFilter:current" element={<ProjectFilter />} />
+            <Route path="/projectFilter/:paramName" element={<ProjectFilter />} />
             <Route path="/projectFilter" element={<ProjectFilter />} />
+            
+            {/* Projects route */}
             <Route path="/projects/:projectName" element={<Projects />} />
+            
+            {/* Other routes */}
+            <Route path="/experience" element={<Builder />} />
             <Route path="/extracurricular" element={<Builder />} />
             <Route path="/interests" element={<Builder />} />
             <Route path="/contact" element={<Contacts />} />
@@ -42,6 +47,8 @@ function App() {
             <Route path="/frameworks" element={<Builder />} />
             <Route path="/tools" element={<Builder />} />
             <Route path="/fields" element={<Builder />} />
+            
+            {/* Not found route */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>

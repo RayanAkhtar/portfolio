@@ -117,6 +117,23 @@ const getProject = async (name: string): Promise<IProject | null> => {
   }
 };
 
+
+
+const getIndustryDescription = async (industryName: string): Promise<string | null> => {
+  try {
+    const q = query(collection(db, "properties"), where("name", "==", industryName));
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      const doc = querySnapshot.docs[0];
+      return doc.data().description;
+    }
+    return null;
+  } catch (error) {
+    console.error("Error fetching industry description:", error);
+    return null;
+  }
+};
+
 // Export functions for use elsewhere
 export {
   getSpotlightProjects,
@@ -124,4 +141,5 @@ export {
   getOtherProjects,
   getProjects,
   getProject,
+  getIndustryDescription
 };

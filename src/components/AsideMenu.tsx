@@ -3,8 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "../styles/asideMenu.css";
 import {
   getSpotlightProjects,
-  getCurrentlyWorkingOnProjects,
-  getOtherProjects,
+  getCurrentlyWorkingOnProjects
 } from "../../api/firebase";
 
 interface MenuItem {
@@ -20,6 +19,8 @@ const AsideMenu: React.FC<{ isOpen: boolean; closeMenu: () => void }> = ({
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({});
   const [menuItems, setMenuItems] = useState<MenuItem[]>([
     { label: "About Me", path: "/about" },
+    { label: "Expore All Projects", path: "/projectFilter"},
+    { label: "Experience", path: "/experience"},
     { label: "Extracurricular", path: "/extracurricular" },
     { label: "Interests & hobbies", path: "/interests" },
     { label: "Contact", path: "/contact" },
@@ -31,16 +32,14 @@ const AsideMenu: React.FC<{ isOpen: boolean; closeMenu: () => void }> = ({
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch data in parallel
-        const [spotlightData, currentData, otherData] = await Promise.all([
+        const [spotlightData, currentData] = await Promise.all([
           getSpotlightProjects(),
-          getCurrentlyWorkingOnProjects(),
-          getOtherProjects(),
+          getCurrentlyWorkingOnProjects()
         ]);
 
         const spotlightMenu: MenuItem = {
           label: "Spotlight",
-          path: "/projectFilter:spotlight", // Updated path
+          path: "/projectFilter/:spotlight",
           subItems: spotlightData.map((project) => ({
             label: project.name,
             path: `/projects/${project.name}`,
@@ -49,35 +48,27 @@ const AsideMenu: React.FC<{ isOpen: boolean; closeMenu: () => void }> = ({
 
         const currentProjectsMenu: MenuItem = {
           label: "Current Projects",
-          path: "/projectFilter:current", // Updated path
+          path: "/projectFilter/:current",
           subItems: currentData.map((project) => ({
             label: project.name,
             path: `/projects/${project.name}`,
           })),
         };
 
-        const otherProjectsMenu: MenuItem = {
-          label: "Other Projects",
-          path: "/projectFilter", // Updated path
-          subItems: otherData.map((project) => ({
-            label: project.name,
-            path: `/projects/${project.name}`,
-          })),
-        };
 
         const newMenuItems = [
           spotlightMenu,
-          currentProjectsMenu,
-          otherProjectsMenu,
+          currentProjectsMenu
         ];
 
         setMenuItems((prevMenuItems) => {
           const aboutPath = prevMenuItems[0];
+          const explorePath = prevMenuItems[1];
           const existingPaths = new Set(prevMenuItems.map((item) => item.path));
           const filteredItems = newMenuItems.filter(
             (newItem) => !existingPaths.has(newItem.path)
           );
-          return [aboutPath, ...filteredItems, ...prevMenuItems.slice(1)];
+          return [aboutPath, explorePath, ...filteredItems, ...prevMenuItems.slice(2)];
         });
       } catch (error) {
         console.error("Error fetching menu items:", error);
