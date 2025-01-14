@@ -48,10 +48,22 @@ const insertProperty = async (property) => {
   }
 };
 
+// Insert or update an experience in Firestore
+const insertExperience = async (experience) => {
+  try {
+    const experienceRef = doc(db, "experiences", experience.name);
+    await setDoc(experienceRef, experience);
+    console.log(`Inserted/Updated experience: ${experience.name}`);
+  } catch (error) {
+    console.error(`Error processing experience '${experience.name}':`, error);
+  }
+};
+
 // upload to Firestore
-const processFiles = async (projectsFile, propertiesFile) => {
+const processFiles = async (projectsFile, propertiesFile, experiencesFile) => {
   const projects = loadJson(projectsFile);
   const properties = loadJson(propertiesFile);
+  const experiences = loadJson(experiencesFile);
 
   for (const project of projects) {
     await insertProject(project);
@@ -60,12 +72,17 @@ const processFiles = async (projectsFile, propertiesFile) => {
   for (const property of properties) {
     await insertProperty(property);
   }
+
+  for (const experience of experiences) {
+    await insertExperience(experience);
+  }
 };
 
 // Main function
 (async () => {
   const projectsFile = 'projects.json';
   const propertiesFile = 'properties.json';
+  const experiencesFile = 'experiences.json';
 
-  await processFiles(projectsFile, propertiesFile);
+  await processFiles(projectsFile, propertiesFile, experiencesFile);
 })();
