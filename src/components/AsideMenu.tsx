@@ -20,8 +20,6 @@ const AsideMenu: React.FC<{ isOpen: boolean; closeMenu: () => void }> = ({
   const [menuItems, setMenuItems] = useState<MenuItem[]>([
     { label: "About Me", path: "/about" },
     { label: "Expore All Projects", path: "/projectFilter"},
-    { label: "Experience", path: "/experience"},
-    { label: "Extracurricular", path: "/extracurricular" },
     { label: "Interests & hobbies", path: "/interests" },
     { label: "Contact", path: "/contact" },
   ]);

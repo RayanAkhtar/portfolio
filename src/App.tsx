@@ -6,17 +6,10 @@ import Navbar from './components/Navbar';
 
 import Home from './pages/Home';
 import About from "./pages/About";
-//import Spotlight from "./pages/Spotlight";
 import Projects from "./pages/Projects";
-//import Extracurricular from "./pages/Extracurricular";
-//import Interests from "./pages/Interests";
+import Interests from "./pages/Interests";
 import Contacts from "./pages/Contacts";
-//import Languages from "./pages/Languages";
-//import Technologies from "./pages/Technologies";
-//import Frameworks from "./pages/Frameworks";
-//import Tools from "./pages/Tools";
-//import Fields from './pages/Fields';
-import Builder from './pages/Builder';
+// import Builder from './pages/Builder';
 import ProjectFilter from './pages/ProjectFilter';
 import NotFound from './pages/NotFound';
 import Experience from './pages/Experience';
@@ -39,14 +32,8 @@ function App() {
             
             {/* Other routes */}
             <Route path="/experience/:experienceName" element={<Experience />} />
-            <Route path="/extracurricular" element={<Builder />} />
-            <Route path="/interests" element={<Builder />} />
+            <Route path="/interests" element={<Interests />} />
             <Route path="/contact" element={<Contacts />} />
-            <Route path="/languages" element={<Builder />} />
-            <Route path="/technologies" element={<Builder />} />
-            <Route path="/frameworks" element={<Builder />} />
-            <Route path="/tools" element={<Builder />} />
-            <Route path="/fields" element={<Builder />} />
             
             {/* Not found route */}
             <Route path="*" element={<NotFound />} />

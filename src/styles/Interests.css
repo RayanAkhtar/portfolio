@@ -1,0 +1,87 @@
+/* Keeping the original styles intact */
+
+.interests-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding: 20px;
+}
+
+.interest-card {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  text-align: center; /* Center the text */
+}
+
+.interest-card:hover {
+  transform: translateY(-10px);
+}
+
+.interest-thumbnail {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 2px solid var(--menu-border-color);
+}
+
+.interest-info {
+  padding: 15px;
+}
+
+.interest-info h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.interest-info p {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+/* Achievements list styling */
+.achievements-list {
+  list-style-type: disc;
+  padding-left: 10px; /* Reduce padding for closer bullets */
+  margin: 0;
+  list-style-position: inside; /* Position the bullet point closer to text */
+}
+
+.achievements-list li {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Responsiveness */
+@media (min-width: 768px) {
+  .interests-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .interests-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .interest-info h3 {
+    font-size: 1.8rem;
+  }
+
+  .interest-info p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .interest-info h3 {
+    font-size: 2rem;
+  }
+
+  .interest-info p {
+    font-size: 1.2rem;
+  }
+}

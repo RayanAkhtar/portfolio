@@ -29,3 +29,4 @@ backend/mongodb/.env
 projects.json
 properties.json
 experiences.json
+interests.json

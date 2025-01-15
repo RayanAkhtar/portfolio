@@ -48,6 +48,17 @@ const insertProperty = async (property) => {
   }
 };
 
+// Insert or update an interest in Firestore
+const insertInterest = async (interest) => {
+  try {
+    const interestRef = doc(db, "interests", interest.name);
+    await setDoc(interestRef, interest);
+    console.log(`Inserted/Updated interest: ${interest.name}`);
+  } catch (error) {
+    console.error(`Error processing interest '${interest.name}':`, error);
+  }
+};
+
 // Check if an experience with the same name and role already exists in Firestore
 const experienceExists = async (name, role) => {
   const experiencesRef = collection(db, "experiences");
@@ -77,10 +88,11 @@ const insertExperience = async (experience) => {
 };
 
 // Upload to Firestore
-const processFiles = async (projectsFile, propertiesFile, experiencesFile) => {
+const processFiles = async (projectsFile, propertiesFile, experiencesFile, interestsFile) => {
   const projects = loadJson(projectsFile);
   const properties = loadJson(propertiesFile);
   const experiences = loadJson(experiencesFile);
+  const interests = loadJson(interestsFile);
 
   for (const project of projects) {
     await insertProject(project);
@@ -93,6 +105,10 @@ const processFiles = async (projectsFile, propertiesFile, experiencesFile) => {
   for (const experience of experiences) {
     await insertExperience(experience);
   }
+
+  for (const interest of interests) {
+    await insertInterest(interest);
+  }
 };
 
 // Main function
@@ -100,6 +116,7 @@ const processFiles = async (projectsFile, propertiesFile, experiencesFile) => {
   const projectsFile = 'projects.json';
   const propertiesFile = 'properties.json';
   const experiencesFile = 'experiences.json';
+  const interestsFile = 'interests.json';
 
-  await processFiles(projectsFile, propertiesFile, experiencesFile);
+  await processFiles(projectsFile, propertiesFile, experiencesFile, interestsFile);
 })();
