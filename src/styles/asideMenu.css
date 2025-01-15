@@ -1,6 +1,6 @@
 /* General Aside Menu Styles */
 .aside-menu {
-  z-index: 2;
+  z-index: 6;
   position: fixed;
   top: 0;
   left: -250px;
