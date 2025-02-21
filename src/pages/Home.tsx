@@ -65,7 +65,7 @@ const Home: React.FC = () => {
           <p className="position">A student at Imperial College London</p>
           <p className="description">
             I'm passionate about building innovative solutions in <span className="highlight">Machine Learning</span>, <span className="highlight">Data Science</span>, and <span className="highlight">Software Engineering</span>.
-            Currently looking for a 6-month internship starting in April 2025.
+            Currently, I am running for DocSoc President, feed free to learn more about me here.
           </p>
         </div>
         <div className="cta-button">
