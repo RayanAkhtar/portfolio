@@ -54,7 +54,7 @@ const Navbar: React.FC = () => {
 
         {/* Logo */}
         <Link to="/" className="logo-link" style={{ fontSize: "2rem" }}>
-          <img src="rayan-akhtar-full-removebg.png" alt="Logo" className="image-link" />
+          <img src="/rayan-akhtar-full-removebg.png" alt="Logo" className="image-link" />
         </Link>
 
         {/* Dropdown Icon '</>' */}

@@ -178,6 +178,22 @@ const getExperiencesByType = async (type: "work" | "other" | "education"): Promi
   }
 };
 
+// Gets all work experiences
+const getAllExperience = async (): Promise<IExperience[]> => {
+  try {
+    const q = query(collection(db, "experiences"), where("type", "==", "work"));
+    const querySnapshot = await getDocs(q);
+    const experiences: IExperience[] = [];
+    querySnapshot.forEach((doc) => {
+      experiences.push(doc.data() as IExperience);
+    });
+    return experiences;
+  } catch (error) {
+    console.error("Error fetching all work experiences:", error);
+    return [];
+  }
+};
+
 // Fetches a specific experience by name
 const getExperienceByName = async (name: string): Promise<IExperience | null> => {
   try {
@@ -204,5 +220,6 @@ export {
   getIndustryDescription,
   getExperiences,
   getExperienceByName,
-  getExperiencesByType
+  getExperiencesByType,
+  getAllExperience
 };
